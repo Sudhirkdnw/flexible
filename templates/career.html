@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join Flexible Learning An International Academy. Submit your CV and explore exciting career opportunities.">
+  <meta name="keywords" content="Flexible Learning, Careers, Job Opportunities, CV Submission, UK Education">
+  <meta name="author" content="Flexible Learning An International Academy">
+  <title>Careers - Flexible Learning An International Academy</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/career.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <div class="sidebar-content animate__animated animate__fadeInLeft">
+      <h2>Join Our Team</h2>
+      <div class="mt-4">
+        <a href="#open-positions" class="btn btn-primary w-100" style="background: var(--primary-green); border: none;"><i class="fas fa-briefcase"></i> Open Positions</a>
+      </div>
+      <div class="mt-4">
+        <a href="#cv-submission" class="btn btn-primary w-100" style="background: var(--primary-green); border: none;"><i class="fas fa-file-upload"></i> Submit CV</a>
+      </div>
+      <div class="mt-4">
+        <a href="#testimonials" class="btn btn-primary w-100" style="background: var(--primary-green); border: none;"><i class="fas fa-quote-left"></i> Testimonials</a>
+      </div>
+      <div class="mt-4">
+        <a href="index.html" class="btn btn-primary w-100" style="background: var(--primary-green); border: none;"><i class="fas fa-home"></i> Back to Home</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="https://portal.flexiblelearning.org.uk/assets/img/portal.flexiblelearning.org.uk_alt.svg" alt="Flexible Learning An International Academy Logo" loading="lazy">
+        <span style="color: var(--dark-gray);"></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas">
+        <i class="fas fa-bars" style="color: var(--dark-gray);"></i>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="navbarOffcanvasLabel">Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link faq-btn" href="faq.html">FAQs</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link signin-btn" href="signun.html" data-form="signin">Sign In</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">Shape the Future of Education</h1>
+      <p class="animate__animated animate__fadeInUp">Join Flexible Learning An International Academy and make a difference in students' lives worldwide.</p>
+      <a href="#cv-submission" class="btn btn-primary animate__animated animate__pulse animate__infinite">Apply Now</a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="main-content" id="careers">
+    <div id="particles-js"></div>
+    <div class="container">
+      <!-- Open Positions -->
+      <section class="open-positions mt-5" id="open-positions">
+        <h3><i class="fas fa-briefcase"></i> Open Positions</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="career-card">
+              <img src="https://via.placeholder.com/300x150" alt="Lecturer Position">
+              <h4><i class="fas fa-chalkboard-teacher"></i> Lecturer - GCSE Maths</h4>
+              <p><strong>Location:</strong> UK Campus | <strong>Type:</strong> Full-Time | <strong>Deadline:</strong> August 1, 2025</p>
+              <p>Join our team to deliver engaging and impactful Maths lessons for GCSE students, fostering a love for learning.</p>
+              <a href="#cv-submission" class="btn btn-primary">Apply Now</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="career-card">
+              <img src="https://via.placeholder.com/300x150" alt="Academic Advisor Position">
+              <h4><i class="fas fa-user-graduate"></i> Academic Advisor</h4>
+              <p><strong>Location:</strong> Remote | <strong>Type:</strong> Part-Time | <strong>Deadline:</strong> July 30, 2025</p>
+              <p>Guide students through their academic and career journeys with personalized support and mentorship.</p>
+              <a href="#cv-submission" class="btn btn-primary">Apply Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CV Submission -->
+      <section class="cv-submission mt-5" id="cv-submission">
+        <h3><i class="fas fa-file-upload"></i> Submit Your CV</h3>
+        <div class="career-card">
+          <h4>Application Form</h4>
+          <form class="career-form">
+            <div class="form-group mb-4">
+              <input type="text" class="form-control" id="applicantName" placeholder="Full Name" required>
+            </div>
+            <div class="form-group mb-4">
+              <input type="email" class="form-control" id="applicantEmail" placeholder="Email Address" required>
+            </div>
+            <div class="form-group mb-4">
+              <select class="form-control" id="position" required>
+                <option value="" disabled selected>Select Position</option>
+                <option value="Lecturer - GCSE Maths">Lecturer - GCSE Maths</option>
+                <option value="Academic Advisor">Academic Advisor</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group mb-4">
+              <input type="file" class="form-control" id="cvUpload" accept=".pdf,.doc,.docx" required>
+            </div>
+            <div class="form-group mb-4">
+              <textarea class="form-control" id="coverLetter" placeholder="Cover Letter (Optional)" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonial-section mt-5" id="testimonials">
+        <h3><i class="fas fa-quote-left"></i> What Our Team Says</h3>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="testimonial-card">
+                <img src="https://via.placeholder.com/80" alt="Employee">
+                <p>"Working at Flexible Learning has been a rewarding experience. The team is supportive, and I love impacting students' lives!"</p>
+                <h5>Jane Smith, Lecturer</h5>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="testimonial-card">
+                <img src="https://via.placeholder.com/80" alt="Employee">
+                <p>"The flexibility and innovation here make every day exciting. I feel valued and inspired."</p>
+                <h5>Michael Brown, Academic Advisor</h5>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Chatbot -->
+  <div class="chatbot-container">
+    <h5><img src="https://via.placeholder.com/30" alt="Bot Avatar"> Career Bot</h5>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chatbot-message bot">Hello! I'm your Career Bot. Pick a random number between 1 and 100 to get started!</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="number" id="chatbotInput" placeholder="Enter a number" min="1" max="100">
+      <button id="chatbotSubmit"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <h3>Stay Updated with Flexible Learning An International Academy</h3>
+      <form class="newsletter-form d-flex">
+        <input type="email" class="form-control" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <p>© 2025 Flexible Learning An International Academy. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#!"><i class="fab fa-facebook-f"></i></a>
+        <a href="#!"><i class="fab fa-twitter"></i></a>
+        <a href="#!"><i class="fab fa-instagram"></i></a>
+        <a href="#!"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- Custom JavaScript -->
+  <script src="assets/js/career.js"></script>
+</body>
+</html>

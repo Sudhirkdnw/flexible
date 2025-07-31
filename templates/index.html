@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% block title %}Home - Flexible{% endblock %}
+
+{% block content %}
+ 
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div id="particles-js"></div>
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200&h=700&fit=crop" class="d-block w-100" alt="Global education" loading="lazy">
+          <div class="carousel-caption">
+            <h1 class="animate__animated animate__fadeInDown">Empower Your Future</h1>
+            <p class="animate__animated animate__fadeInUp delay-1s">UK-based courses for international students worldwide.</p>
+            <a href="#courses" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.pexels.com/photos/3183196/pexels-photo-3183196.jpeg?auto=compress&cs=tinysrgb&w=1200&h=700&fit=crop" class="d-block w-100" alt="International students" loading="lazy">
+          <div class="carousel-caption">
+            <h1 class="animate__animated animate__fadeInDown">Flexible Learning An International Academy</h1>
+            <p class="animate__animated animate__fadeInUp delay-1s">Transforming global education with UK standards.</p>
+            <a href="#courses" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="cta-banner">
+      <div class="container">
+        <h2 class="animate__animated animate__fadeInDown">Start Your UK Education Journey!</h2>
+        <a href="#contact" class="btn animate__animated animate__fadeInUp delay-1s">Join Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Overview -->
+  <div class="features">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeInDown">Why Choose Flexible Learning An International Academy?</h2>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="feature-card animate__animated animate__fadeInUp">
+            <i class="fas fa-laptop"></i>
+            <h3>Flexible Learning</h3>
+            <p>Study at your pace, anywhere globally.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="feature-card animate__animated animate__fadeInUp delay-1s">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <h3>UK-Qualified Instructors</h3>
+            <p>Learn from UK education experts.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="feature-card animate__animated animate__fadeInUp delay-2s">
+            <i class="fas fa-briefcase"></i>
+            <h3>Industry-Relevant</h3>
+            <p>Courses aligned with UK job markets.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="feature-card animate__animated animate__fadeInUp delay-3s">
+            <i class="fas fa-certificate"></i>
+            <h3>UK Certification</h3>
+            <p>Earn globally recognized credentials.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses Section -->
+  <section class="courses" id="courses">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeInDown">UK-Based Courses</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card course-card animate__animated animate__fadeInUp">
+            <div class="card-body">
+              <i class="fas fa-laptop-code"></i>
+              <h3 class="card-title">Business Management (UK Level 3)</h3>
+              <p><strong>Duration:</strong> 2 Years</p>
+              <div class="duration-bar" style="--progress-width: 66%"><span></span></div>
+              <p class="card-text">Master marketing and management with UK standards.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#businessModal">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card course-card animate__animated animate__fadeInUp delay-1s">
+            <div class="card-body">
+              <i class="fas fa-code"></i>
+              <h3 class="card-title">Computer Science (UK Level 3)</h3>
+              <p><strong>Duration:</strong> 1.5 Years</p>
+              <div class="duration-bar" style="--progress-width: 50%"><span></span></div>
+              <p class="card-text">Develop coding and tech skills with UK curriculum.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#csModal">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card course-card animate__animated animate__fadeInUp delay-2s">
+            <div class="card-body">
+              <i class="fas fa-tools"></i>
+              <h3 class="card-title">Engineering (UK Level 3)</h3>
+              <p><strong>Duration:</strong> 2 Years</p>
+              <div class="duration-bar" style="--progress-width: 66%"><span></span></div>
+              <p class="card-tested with UK methodologies.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#engineeringModal">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Modals -->
+  <div class="modal fade" id="businessModal" tabindex="-1" aria-labelledby="businessModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="businessModalLabel">Business Management</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Duration:</strong> 2 Years</p>
+          <p>Master marketing, finance, and management with a UK curriculum.</p>
+          <p><strong>Skills Learned:</strong> Strategic planning, financial analysis.</p>
+          <p><strong>Career Paths:</strong> Business Manager, Marketing Specialist.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="#contact" class="btn btn-primary">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="csModal" tabindex="-1" aria-labelledby="csModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="csModalLabel">Computer Science</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Duration:</strong> 1.5 Years</p>
+          <p>Develop coding and tech skills with a UK-based curriculum.</p>
+          <p><strong>Skills Learned:</strong> Programming, network management.</p>
+          <p><strong>Career Paths:</strong> Software Developer, IT Consultant.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="#contact" class="btn btn-primary">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="engineeringModal" tabindex="-1" aria-labelledby="engineeringModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="engineeringModalLabel">Engineering</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Duration:</strong> 2 Years</p>
+          <p>Learn engineering design with UK methodologies.</p>
+          <p><strong>Skills Learned:</strong> CAD design, project management.</p>
+          <p><strong>Career Paths:</strong> Mechanical Engineer, Design Engineer.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="#contact" class="btn btn-primary">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container about-content">
+      <h2 class="animate__animated animate__fadeInDown">About Flexible Learning An International Academy</h2>
+      <p class="animate__animated animate__fadeInUp">Flexible Learning An International Academy brings UK-based education to international students, fostering global success through flexible online learning.</p>
+      <p class="animate__animated animate__fadeInUp delay-1s">Our mission is to empower students with world-class qualifications and skills for a competitive global market.</p>
+      <ul class="animate__animated animate__fadeInUp delay-2s">
+        <li><i class="fas fa-globe"></i> Accessible education for international students.</li>
+        <li><i class="fas fa-chalkboard-teacher"></i> UK-qualified instructors.</li>
+        <li><i class="fas fa-briefcase"></i> Industry-aligned UK courses.</li>
+        <li><i class="fas fa-certificate"></i> Globally recognized certifications.</li>
+      </ul>
+      <!-- Comparison Button -->
+      <div class="text-center mb-4 animate__animated animate__fadeInUp delay-3s">
+        <button class="btn btn-primary compare-btn" onclick="toggleComparisonTable()">Compare UK & India Education</button>
+      </div>
+      <!-- FAQ Section -->
+
+        <table class="table table-bordered comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">India</th>
+              <th scope="col">UK Equivalent</th>
+              <th scope="col">Student Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SSC – 10th Std</td>
+              <td>GCSEs – (or ‘O’ Levels)</td>
+              <td>14-16</td>
+            </tr>
+            <tr>
+              <td>HSC – 12th Std</td>
+              <td>A-Levels</td>
+              <td>16-18</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="testimonial-card">
+              <p>"Flexible Learning An International Academy opened doors to a UK education I never thought possible!"</p>
+              <cite>John Doe, Business Management Graduate</cite>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card">
+              <p>"The flexibility and quality of instruction at Flexible Learning An International Academy transformed my career path."</p>
+              <cite>Jane Smith, Computer Science Graduate</cite>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card">
+              <p>"The UK-based engineering course gave me skills that are recognized worldwide!"</p>
+              <cite>Ali Khan, Engineering Graduate</cite>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeInDown">Contact Flexible Learning An International Academy</h2>
+      <form class="contact-form animate__animated animate__fadeInUp">
+        <div class="form-group mb-4">
+          <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group mb-4">
+          <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group mb-4">
+          <textarea class="form-control" id="message" placeholder="Your Message" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+
+{% endblock %}
