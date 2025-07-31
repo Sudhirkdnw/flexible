@@ -1448,3 +1448,36 @@ footer {
           background-color: white;
 
     }
+
+@media (max-width: 768px) {
+  .course-table {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .course-table table {
+    min-width: 1000px; /* Ensures horizontal scroll */
+    display: block;
+  }
+
+  .course-table::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .course-table::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  .course-table th,
+  .course-table td {
+    white-space: nowrap;
+    font-size: 0.75rem;
+    padding: 6px;
+  }
+
+  .course-table .btn-primary {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}

@@ -5,14 +5,17 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
-# def about(request):
-#     return render(request, 'about.html')
+def about(request):
+    return render(request, 'about.html')
 
-# def contact(request):
-#     return render(request, 'contact.html')
+def career(request):
+    return render(request, 'career.html')
 
-# def login_view(request):
-#     return render(request, 'login.html')
+def courses(request):
+    return render(request, 'courses.html')
 
-# def register_view(request):
-#     return render(request, 'register.html')
+def faq(request):
+    return render(request, 'faq.html')
+
+def signup(request):
+    return render(request, 'signup.html')

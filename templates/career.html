@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
   <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/career.css">
+  <link rel="stylesheet" href="{% static 'assets/css/career.css' %}">
 </head>
 <body>
   <!-- Sidebar -->
@@ -63,13 +64,13 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link faq-btn" href="faq.html">FAQs</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-            <li class="nav-item"><a class="nav-link signin-btn" href="signun.html" data-form="signin">Sign In</a></li>
-            <li class="nav-item"><a class="nav-link active" href="#">Careers</a></li>
+             <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../courses/">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="../about/">About</a></li>
+          <li class="nav-item"><a class="nav-link faq-btn" href="../faq/">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link signin-btn" href="../signup/">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../career/">Careers</a></li>
           </ul>
         </div>
       </div>
@@ -211,6 +212,6 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <!-- Custom JavaScript -->
-  <script src="assets/js/career.js"></script>
+  <script src="{% static 'assets/js/career.js' %}"></script>
 </body>
 </html>
