@@ -27,14 +27,7 @@
       }
     });
 
-    // Navigation Active State
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-        link.classList.add('active');
-      });
-    });
-
+ 
     // GSAP Animations with ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
     gsap.from('.carousel-caption h1', { opacity: 0, y: 50, duration: 1.5, ease: 'power3.out', delay: 0.5 });

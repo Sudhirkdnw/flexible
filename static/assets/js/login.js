@@ -1,22 +1,4 @@
 
-    // Sticky Navbar Effect
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Navigation Active State
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-        link.classList.add('active');
-      });
-    });
-
     // Form Toggle Functionality
     document.querySelectorAll('.nav-link[data-form], .form-toggle').forEach(link => {
       link.addEventListener('click', (e) => {

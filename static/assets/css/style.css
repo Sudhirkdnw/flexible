@@ -662,7 +662,7 @@ img:not([src]) {
 .contact h2 {
   font-family: 'Montserrat', sans-serif;
   color: var(--primary-green);
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 900;
   margin-bottom: 40px;
 }

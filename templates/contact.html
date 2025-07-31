@@ -1,0 +1,29 @@
+ {% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Flexible{% endblock %}
+
+{% block content %}
+ 
+  <!-- Contact Section -->
+  <section class="contact" id="contact" style="padding-top:10%">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeInDown">Contact Flexible Learning An International Academy</h2>
+      <form class="contact-form animate__animated animate__fadeInUp">
+        <div class="form-group mb-4">
+          <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group mb-4">
+          <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group mb-4">
+          <textarea class="form-control" id="message" placeholder="Your Message" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+  <script src="{% static 'assets/js/index.js' %}"></script>
+
+{% endblock %}

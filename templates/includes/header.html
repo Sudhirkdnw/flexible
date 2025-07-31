@@ -13,15 +13,17 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../courses/">Courses</a></li>
-          <li class="nav-item"><a class="nav-link" href="../about/">About</a></li>
-          <li class="nav-item"><a class="nav-link faq-btn" href="../faq/">FAQs</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link signin-btn" href="../signup/">Sign In</a></li>
-          <li class="nav-item"><a class="nav-link active" href="../career/">Careers</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/courses/' %}active{% endif %}" href="../courses/">Courses</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="../about/">About</a></li>
+          <li class="nav-item"><a class="nav-link faq-btn {% if request.path == '/faq/' %}active{% endif %}" href="../faq/">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="../contact/">Contact</a></li>
+          <li class="nav-item"><a class="nav-link signin-btn {% if request.path == '/signup/' %}active{% endif %}" href="../signup/">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link " href="../career/">Careers</a></li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
+
+
