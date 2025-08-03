@@ -1,0 +1,665 @@
+ 
+    :root {
+      --primary-green: #71ab0c;
+      --secondary-green: #71ab0c;
+      --black: #000000;
+      --white: #FFFFFF;
+      --light-gray: #F9FAFB;
+      --gradient-bg: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--white) 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+      --dark-gray: #333333;
+    }
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.8;
+      overflow-x: hidden;
+      position: relative;
+      margin-left: 300px;
+      transition: margin-left 0.3s ease;
+    }
+    body.sidebar-minimized {
+      margin-left: 60px;
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(113, 171, 12, 0.5); }
+      50% { box-shadow: 0 0 30px rgba(113, 171, 12, 0.8); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes underline {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+    @keyframes typing {
+      0% { content: '|'; }
+      50% { content: ''; }
+      100% { content: '|'; }
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.4s ease;
+    }
+    img:not([src]) {
+      background-color: #F3F4F6;
+      border: 1px solid #E5E7EB;
+    }
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .navbar.scrolled {
+      background: var(--white);
+    }
+    .navbar-brand {
+      color: var(--dark-gray) !important;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .navbar-brand:hover {
+      transform: scale(1.1);
+    }
+    .navbar-brand img {
+      width: 150px;
+      height: auto;
+      animation: float 3s ease-in-out infinite;
+    }
+    .navbar-brand span {
+      font-size: 1rem;
+      color: var(--dark-gray);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .nav-link {
+      color: var(--dark-gray) !important;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem !important;
+      border-radius: 10px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background: var(--primary-green);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+      animation: underline 0.3s ease;
+    }
+    .nav-link:hover {
+      background: var(--light-gray);
+      color: var(--primary-green) !important;
+      animation: glow 1.5s infinite;
+    }
+    .nav-link.active {
+      background: var(--primary-green);
+      color: var(--white) !important;
+    }
+    .dropdown-menu {
+      background: var(--white);
+      border: var(--glass-border);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 0.5rem;
+    }
+    .dropdown-item {
+      color: var(--dark-gray);
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .dropdown-item:hover {
+      background: var(--light-gray);
+      color: var(--primary-green);
+      animation: glow 1.5s infinite;
+    }
+    .dropdown-item.active {
+      background: var(--primary-green);
+      color: var(--white);
+    }
+    .offcanvas {
+      background: var(--white);
+      color: var(--dark-gray);
+      backdrop-filter: blur(10px);
+    }
+    .offcanvas-title {
+      color: var(--dark-gray);
+    }
+    /* Sidebar Styles */
+    .sidebar {
+      position: fixed;
+      top: 130px;
+      left: 0;
+      width: 300px;
+      height: calc(100vh - 80px);
+      background: var(--glass-bg);
+      border-right: var(--glass-border);
+      backdrop-filter: blur(10px);
+      box-shadow: 8px 0 25px rgba(0, 0, 0, 0.1);
+      padding: 40px 20px;
+      overflow-y: auto;
+      z-index: 900;
+      color: var(--dark-gray);
+      transition: width 0.3s ease;
+    }
+    .sidebar.minimized {
+      width: 60px;
+      padding: 40px 10px;
+    }
+    .sidebar.minimized .sidebar-content {
+      display: none;
+    }
+    .sidebar-content {
+      text-align: center;
+    }
+    .sidebar-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--dark-gray);
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+      animation: typewriter 4s steps(80) forwards;
+      margin-bottom: 40px;
+    }
+    .sidebar-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary-green);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .sidebar-toggle:hover {
+      background: var(--secondary-green);
+      animation: glow 1.5s infinite;
+    }
+    .hero-section {
+      background: var(--gradient-bg);
+      padding: 60px 0;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 40px;
+    }
+    .hero-section h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .hero-section p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .hero-section .btn-primary {
+      background: var(--primary-green);
+      border: none;
+      border-radius: 50px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .hero-section .btn-primary:hover {
+      background: var(--secondary-green);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      animation: glow 1.5s infinite;
+    }
+    .main-content {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--white);
+      color: var(--dark-gray);
+      padding: 150px 20px 100px;
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .main-content .container {
+      position: relative;
+      z-index: 2;
+    }
+    .career-card {
+      background: var(--light-gray);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid #E5E7EB;
+      position: relative;
+      overflow: hidden;
+    }
+    .career-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+      animation: glow 1.5s infinite;
+    }
+    .career-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(113, 171, 12, 0.1);
+      transition: left 0.4s ease;
+    }
+    .career-card:hover::before {
+      left: 0;
+    }
+    .career-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .career-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .career-card p {
+      font-size: 0.95rem;
+      color: var(--dark-gray);
+      margin-bottom: 15px;
+    }
+    .career-card .btn-primary {
+      background: var(--primary-green);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .career-card .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.4s ease;
+    }
+    .career-card .btn-primary:hover::after {
+      left: 0;
+    }
+    .career-card .btn-primary:hover {
+      background: var(--secondary-green);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .career-form .form-control {
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid #D1D5DB;
+      font-size: 1.1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .career-form .form-control:focus {
+      border-color: var(--primary-green);
+      box-shadow: 0 0 10px rgba(113, 171, 12, 0.5);
+    }
+    .career-form .btn-primary {
+      background: var(--primary-green);
+      border: none;
+      border-radius: 50px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .career-form .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.4s ease;
+    }
+    .career-form .btn-primary:hover::after {
+      left: 0;
+    }
+    .career-form .btn-primary:hover {
+      background: var(--secondary-green);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      animation: glow 1.5s infinite;
+    }
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      color: var(--dark-gray);
+      transition: transform 0.3s ease;
+    }
+    .chatbot-container:hover {
+      transform: scale(1.05);
+    }
+    .chatbot-container h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      color: var(--primary-green);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chatbot-container h5 img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-green);
+    }
+    .chatbot-messages {
+      max-height: 220px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: var(--light-gray);
+      border-radius: 10px;
+    }
+    .chatbot-message {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .chatbot-message.bot::after {
+      content: '|';
+      position: absolute;
+      right: 10px;
+      color: var(--primary-green);
+      animation: typing 1s infinite;
+    }
+    .chatbot-message.user {
+      background: var(--primary-green);
+      color: var(--white);
+      text-align: right;
+    }
+    .chatbot-input {
+      display: flex;
+      gap: 10px;
+    }
+    .chatbot-input input {
+      border-radius: 10px;
+      border: 1px solid #D1D5DB;
+      padding: 10px;
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+    .chatbot-input input:focus {
+      border-color: var(--primary-green);
+      box-shadow: 0 0 10px rgba(113, 171, 12, 0.5);
+      outline: none;
+    }
+    .chatbot-input button {
+      background: var(--primary-green);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .chatbot-input button:hover {
+      background: var(--secondary-green);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .testimonial-section {
+      margin: 40px 0;
+    }
+    .testimonial-card {
+      background: var(--light-gray);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 0 10px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      animation: glow 1.5s infinite;
+    }
+    .testimonial-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      border: 3px solid var(--primary-green);
+    }
+    .testimonial-card p {
+      font-style: italic;
+      color: var(--dark-gray);
+      margin-bottom: 10px;
+    }
+    .testimonial-card h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      color: var(--primary-green);
+    }
+    footer {
+      background: var(--gradient-bg);
+      color: var(--white);
+      padding: 60px 20px;
+      text-align: center;
+      margin-left: -300px;
+      width: calc(100% + 300px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+    footer.sidebar-minimized {
+      margin-left: -60px;
+      width: calc(100% + 60px);
+    }
+    .newsletter-form {
+      max-width: 500px;
+      margin: 30px auto;
+    }
+    .newsletter-form .form-control {
+      border-radius: 12px 0 0 12px;
+      padding: 15px;
+      border: 1px solid #D1D5DB;
+      font-size: 1.1rem;
+    }
+    .newsletter-form .btn-primary {
+      border-radius: 0 12px 12px 0;
+      padding: 15px 30px;
+      background: var(--primary-green);
+      border: none;
+      font-weight: 700;
+    }
+    .newsletter-form .btn-primary:hover {
+      background: var(--secondary-green);
+    }
+    .social-icons a {
+      color: var(--white);
+      font-size: 2rem;
+      margin: 0 20px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: var(--primary-green);
+      transform: scale(1.3) rotate(15deg);
+    }
+    @media (max-width: 992px) {
+      .sidebar {
+        width: 250px;
+        height: calc(100vh - 80px);
+        top: 80px;
+      }
+      body {
+        margin-left: 250px;
+      }
+      body.sidebar-minimized {
+        margin-left: 60px;
+      }
+      footer {
+        margin-left: -250px;
+        width: calc(100% + 250px);
+      }
+      footer.sidebar-minimized {
+        margin-left: -60px;
+        width: calc(100% + 60px);
+      }
+      .sidebar-content h2 {
+        font-size: 1.8rem;
+      }
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+        height: calc(100vh - 80px);
+        top: 80px;
+      }
+      body {
+        margin-left: 200px;
+      }
+      body.sidebar-minimized {
+        margin-left: 60px;
+      }
+      footer {
+        margin-left: -200px;
+        width: calc(100% + 200px);
+      }
+      footer.sidebar-minimized {
+        margin-left: -60px;
+        width: calc(100% + 60px);
+      }
+      .sidebar-content h2 {
+        font-size: 1.6rem;
+      }
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      .career-card h4 {
+        font-size: 1.2rem;
+      }
+      .career-card p {
+        font-size: 0.85rem;
+      }
+      .chatbot-container {
+        width: 280px;
+      }
+    }
+    @media (max-width: 576px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 20px;
+      }
+      body {
+        margin-left: 0;
+      }
+      body.sidebar-minimized {
+        margin-left: 0;
+      }
+      footer {
+        margin-left: 0;
+        width: 100%;
+      }
+      footer.sidebar-minimized {
+        margin-left: 0;
+        width: 100%;
+      }
+      .main-content {
+        padding-top: 100px;
+      }
+      .sidebar-toggle {
+        display: none;
+      }
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+      .hero-section p {
+        font-size: 1rem;
+      }
+      .chatbot-container {
+        width: 90%;
+        right: 5%;
+      }
+    }
+  
