@@ -1,7 +1,9 @@
  {% extends 'base.html' %}
 {% load static %}
 {% block title %}Home - Flexible{% endblock %}
-
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
 {% block content %}
  
   <!-- Contact Section -->

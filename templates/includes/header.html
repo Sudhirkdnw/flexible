@@ -1,7 +1,8 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="#home">
-      <img src="https://portal.flexiblelearning.org.uk/assets/img/portal.flexiblelearning.org.uk_alt.svg" alt="Logo" loading="lazy">
+      <img src="{% static 'assets/image/logo.jpg' %}" alt="Logo" loading="lazy">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas">
       <i class="fas fa-bars"></i>
@@ -14,12 +15,20 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.path == '/courses/' %}active{% endif %}" href="../courses/">Courses</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="../about/">About</a></li>
-          <li class="nav-item"><a class="nav-link faq-btn {% if request.path == '/faq/' %}active{% endif %}" href="../faq/">FAQs</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="../contact/">Contact</a></li>
-          <li class="nav-item"><a class="nav-link signin-btn {% if request.path == '/signup/' %}active{% endif %}" href="../signup/">Sign In</a></li>
-          <li class="nav-item"><a class="nav-link " href="../career/">Careers</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/courses/' %}active{% endif %}" href="{% url 'courses' %}">Courses</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link faq-btn {% if request.path == '/faq/' %}active{% endif %}" href="{% url 'faq' %}">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
+          {% if request.user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Profile</a>
+  </li>
+{% else %}
+  <li class="nav-item">
+    <a class="nav-link signin-btn {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Sign In</a>
+  </li>
+{% endif %}
+          <li class="nav-item"><a class="nav-link " href="{% url 'career' %}">Careers</a></li>
         </ul>
       </div>
     </div>

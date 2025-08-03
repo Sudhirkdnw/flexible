@@ -1,0 +1,101 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.dashboard-card {
+    background-color: #31bea9ff;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 220px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.dashboard-card h3 {
+    margin: 0;
+    font-size: 32px;
+}
+.dashboard-card p {
+    margin: 5px 0 0;
+    font-size: 16px;
+}
+</style>
+  
+<div class="card-container">
+    <div class="dashboard-card">
+        <h3>{{ total_students }}</h3>
+        <p>Students</p>
+    </div>
+    <div class="dashboard-card">
+        <h3>{{ total_teachers }}</h3>
+        <p>Teachers</p>
+    </div>
+    <div class="dashboard-card">
+        <h3>{{ total_admins }}</h3>
+        <p>Admins</p>
+    </div>
+    <div class="dashboard-card">
+        <h3>{{ total_active }}</h3>
+        <p>Active Users</p>
+    </div>
+</div>
+<canvas id="todayChart" width="400" height="200"></canvas>
+
+{{ block.super }}
+
+<script>
+  const ctx = document.getElementById('todayChart').getContext('2d');
+  const todayChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Today\'s Students', 'Today\'s Revenue'],
+      datasets: [
+        {
+          label: 'Students',
+          data: [{{ students_today }}, null],  // null for revenue
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: '#36A2EB',
+          borderWidth: 2,
+          yAxisID: 'yStudents'
+        },
+        {
+          label: 'Revenue',
+          data: [null, {{ today_revenue }}],  // null for students
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+          borderColor: '#FF6384',
+          borderWidth: 1,
+          yAxisID: 'yRevenue'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        yStudents: {
+          type: 'linear',
+          position: 'left',
+          beginAtZero: true,
+          title: { display: true, text: 'No. of Students' }
+        },
+        yRevenue: {
+          type: 'linear',
+          position: 'right',
+          beginAtZero: true,
+          title: { display: true, text: 'Revenue (₹)' },
+          grid: {
+            drawOnChartArea: false // disable grid on right axis
+          }
+        }
+      }
+    }
+  });
+</script>
+
+{% endblock %}

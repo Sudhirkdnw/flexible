@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Home - Flexible{% endblock %}
-
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
 {% block content %}
  
   <!-- Hero Section -->
@@ -12,7 +14,7 @@
         <div class="carousel-item active">
           <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200&h=700&fit=crop" class="d-block w-100" alt="Global education" loading="lazy">
           <div class="carousel-caption">
-            <h1 class="animate__animated animate__fadeInDown">Empower Your Future</h1>
+            <h1 class="animate__animated animate__fadeInDown">Develop Your Dream</h1>
             <p class="animate__animated animate__fadeInUp delay-1s">UK-based courses for international students worldwide.</p>
             <a href="#courses" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
           </div>

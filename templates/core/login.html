@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+
+{% block title %}Login - Flexible{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="auth-section" id="auth">
+  <div id="particles-js"></div>
+  <div class="container auth-content animate__animated animate__fadeInUp">
+    <div id="signin-form" class="auth-form">
+      <h2>Sign In to Your Account</h2>
+      
+      <form method="post" novalidate>
+        {% csrf_token %}
+        
+        {% for field in form %}
+          <div class="form-group mb-4 text-start">
+            <label class="form-label " for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field|add_class:"form-control" }}
+            {% if field.errors %}
+              <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-between mb-4">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember Me</label>
+          </div>
+          <a href="#forgot-password">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger mt-3">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <p class="text-center mt-3">
+          Don’t have an account? <a href="{% url 'student-register' %}">Sign Up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script src="{% static 'assets/js/login.js' %}"></script>
+{% endblock %}

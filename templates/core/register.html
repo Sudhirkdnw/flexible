@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load form_tags %} 
+{% load static %}
+{% block title %}Login - Flexible{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Auth Section -->
+<section class="auth-section" >
+  <div id="particles-js"></div>
+  <div class="container auth-content animate__animated animate__fadeInUp">
+<div id="signup-form" class="auth-form ">
+      <h2 class="text-center mb-4">Create Your Account</h2>
+     
+         <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group mb-4 text-start">
+              {{ form.username.label_tag }}
+              {{ form.username|add_class:"form-control" }}
+              {% if form.username.errors %}
+                <div class="text-danger small">{{ form.username.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div class="form-group mb-4 text-start
+              {{ form.email.label_tag }}
+              {{ form.email|add_class:"form-control" }}
+              {% if form.email.errors %}
+                <div class="text-danger small">{{ form.email.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div class="form-group mb-4 text-start">
+              {{ form.password1.label_tag }}
+              {{ form.password1|add_class:"form-control" }}
+              {% if form.password1.errors %}
+                <div class="text-danger small">{{ form.password1.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div class="form-group mb-4 text-start">
+              {{ form.password2.label_tag }}
+              {{ form.password2|add_class:"form-control" }}
+              {% if form.password2.errors %}
+                <div class="text-danger small">{{ form.password2.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div class="form-check mb-4 text-start">
+              <input class="form-check-input" type="checkbox" id="terms" required>
+              <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+
+            <p class="text-center mt-3">
+              Already have an account? <a href="{% url 'login' %}">Sign In</a>
+            </p>
+          </form>
+
+    </div>
+      </div>
+</section>
+
+<script src="{% static 'assets/js/login.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+{% endblock %}
+{% block content %}
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <div class="sidebar-content animate__animated animate__fadeInLeft">
+      <h2>Your Profile</h2>
+
+<div class="profile-card">
+  <div class="profile-image-wrapper">
+    {% if profile and profile.image %}
+    <img src="{{ profile.image.url }}" alt="Profile Image" alt="Profile Image" class="profile-image">
+  {% else %}
+    <img src="{% static 'assets/image/default.png' %}" alt="Default Image" alt="Profile Image" class="profile-image">
+  {% endif %}
+<a href="{% url 'update_student_profile'%}" class="bookmark-btn" title="Bookmark Profile">
+<i class="fa-solid fa-user-pen"></i></a>  
+</div>
+  <div class="profile-content">
+    <h3 class="profile-name">
+      {{ user.get_full_name|default:user.username }}<i class="fas fa-check-circle verified-icon"></i>
+    </h3>
+    <p class="profile-bio">
+      I’m a Brand Designer who focuses on clarity & emotional connection.
+    </p>
+    <div class="profile-stats">
+      <div class="stat">
+        <i class="fas fa-star"></i>
+        <span>{{profile.gender}}</span>
+        <small>Gender</small>
+      </div>
+      <div class="stat">
+        <span>{{profile.nationality}}</span>
+        <small>Nation</small>
+      </div>
+      <div class="stat">
+        <span>{{profile.date_of_birth}}</span>
+        <small>DOB</small>
+      </div>
+      <div class="stat">
+        <span>{{profile.phone_number}}</span>
+        <small>Phone</small>
+      </div>
+      
+    </div>
+    <a href="#" class="btn btn-touch">{{ profile.first_name|default:user.username }} {{profile.last_name}}</a>
+  </div>
+</div>
+
+
+     
+      <div class="courses-list">
+        <button class="btn btn-primary w-100" id="myCoursesBtn" style="height: 30px; margin-top: 10px" aria-label="Toggle My Courses">View My Courses</button>
+        <div id="courseList" style="display: none;">
+          <h3>Enrolled Courses</h3>
+          <div class="course-item">
+            <h4>GCSE Maths</h4>
+            <p>Status: In Progress | Completion: 75%</p>
+          </div>
+          <div class="course-item">
+            <h4>BSc Business</h4>
+            <p>Status: Enrolled | Starts: August 1, 2025</p>
+          </div>
+        </div>
+      </div>
+      <div class="grades-list">
+        <button class="btn btn-primary w-100" id="myGradesBtn" style="height: 30px; margin-top: 10px" aria-label="Toggle My Grades">View My Grades</button>
+        <div id="gradesList" style="display: none;">
+          <h3>Your Grades</h3>
+          <canvas id="gradesChart"></canvas>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-primary w-100" style="height: 30px; margin-top: 10px;" aria-label="View Attendance">View Attendance</button>
+      </div>
+      <div class="mt-3">
+<a href="{% url 'logout' %}" class="btn btn-danger w-100" style="height: 40px; margin-top: 10px;" aria-label="Log Out">
+    Log Out
+</a>      </div>
+    </div>
+  </aside>
+
+ 
+  <!-- Main Content -->
+  <section class="main-content" id="profile">
+    <div id="particles-js"></div>
+    <div class="container">
+      <!-- Course Search -->
+      <div class="course-search-container">
+        <input type="text" id="courseSearch" placeholder="Search for courses..." aria-label="Search for courses">
+        <button id="courseSearchBtn" class="btn btn-primary" aria-label="Search Courses"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="course-search-results" id="courseSearchResults" style="display: none;">
+        <!-- Results will be populated by JavaScript -->
+      </div>
+      <h1>Welcome,{{ user.get_full_name|default:user.username }}!</h1>
+      <p>Explore your personalized dashboard to track your learning journey with Flexible Learning An International Academy.</p>
+      <button class="btn btn-primary" id="toggleNotificationsBtn" style="margin: 10px 0;" aria-label="Toggle Notifications">View Notifications</button>
+      <div class="dashboard-grid">
+        <!-- Enrolled Courses -->
+        <section class="courses mt-5">
+          <h3>Your Enrolled Courses</h3>
+          <div class="course-card">
+            <h4>GCSE Maths</h4>
+            <p>Progress: 75%</p>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width: 75%;"></div>
+            </div>
+            <p>Insights: Revise algebra to improve your quiz scores.</p>
+            <ul class="materials-list">
+              <li><a href="#">Video: Algebra Basics</a></li>
+              <li><a href="#">Quiz: Quadratic Equations</a></li>
+              <li><a href="#">Lecture Notes: Trigonometry</a></li>
+            </ul>
+            <a href="#" class="btn btn-primary" aria-label="View GCSE Maths Course">View Course</a>
+          </div>
+          <div class="course-card">
+            <h4>BSc Business</h4>
+            <p>Progress: 20%</p>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width: 20%;"></div>
+            </div>
+            <p>Insights: Focus on marketing strategies for better coursework performance.</p>
+            <ul class="materials-list">
+              <li><a href="#">Video: Introduction to Marketing</a></li>
+              <li><a href="#">Quiz: Market Analysis</a></li>
+              <li><a href="#">Lecture Notes: Business Ethics</a></li>
+            </ul>
+            <a href="#" class="btn btn-primary" aria-label="View BSc Business Course">View Course</a>
+          </div>
+        </section>
+
+        <!-- Live Classes -->
+        <section class="live-classes mt-5">
+          <h3>Live Class Schedule</h3>
+          <div class="course-card">
+            <h4>Online Classes</h4>
+            <p>GCSE Maths: July 16, 2025, 10:00 AM GMT (Recording Available)</p>
+            <p>BSc Business: July 17, 2025, 2:00 PM GMT</p>
+            <a href="#" class="btn btn-primary" aria-label="Join Online Class">Join Class</a>
+          </div>
+          <div class="course-card">
+            <h4>UK Campus Timetable</h4>
+            <p>View your upcoming lessons, assignments, and live sessions.</p>
+            <div id="timetableCalendar"></div>
+            <a href="#" class="btn btn-primary mt-3" aria-label="View Full Timetable">View Full Timetable</a>
+          </div>
+        </section>
+
+<!-- Progress -->
+<section class="progress mt-5">
+  <h3 class="section-title">📈 Your Learning Progress</h3>
+
+  <div class="course-card progress-card">
+    <div class="progress-header">
+      <h4>Progress Summary</h4>
+      {% comment %} <canvas id="progressChart" aria-label="Progress Chart"></canvas> {% endcomment %}
+    </div>
+
+    <div class="progress-metrics mt-4">
+      <div class="metric-card">
+        <h5>📊 Avg. Quiz Score</h5>
+        <p>85%</p>
+      </div>
+      <div class="metric-card">
+        <h5>✅ Completion Rate</h5>
+        <p>60%</p>
+      </div>
+      <div class="metric-card">
+        <h5>⏱️ Time Spent</h5>
+        <p>45 hrs</p>
+      </div>
+    </div>
+
+    <div class="progress-details mt-4">
+      <h5 class="mb-2">📚 Detailed Course Breakdown</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="table-success">
+            <tr>
+              <th>Course</th>
+              <th>Quizzes</th>
+              <th>Assignments</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GCSE Maths</td>
+              <td>80%</td>
+              <td>90%</td>
+              <td>75%</td>
+            </tr>
+            <tr>
+              <td>BSc Business</td>
+              <td>70%</td>
+              <td>75%</td>
+              <td>20%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="milestone mt-4 d-flex align-items-center gap-3 p-3 bg-light rounded">
+      <i class="fas fa-trophy fa-2x text-warning"></i>
+      <p class="mb-0"><strong>Milestone:</strong> Completed 75% of GCSE Maths!</p>
+    </div>
+
+    <div class="insights mt-4">
+      <h5 class="mb-2">🔍 Recommendations</h5>
+      <ul class="list-group">
+        <li class="list-group-item">✅ Revise algebra to boost your GCSE Maths quiz scores.</li>
+        <li class="list-group-item">✅ Focus on marketing strategies for BSc Business coursework.</li>
+        <li class="list-group-item">✅ Review lecture notes on trigonometry before the next mock exam.</li>
+      </ul>
+    </div>
+
+    <div class="text-end mt-4">
+      <a href="#" class="download-report-btn btn btn-success" aria-label="Download Progress Report">
+        <i class="fas fa-download me-2"></i>Download Progress Report
+      </a>
+    </div>
+  </div>
+</section>
+
+
+        <!-- Notifications -->
+        <section class="notifications mt-5" style="display: none;">
+          <h3>Notifications</h3>
+          <div class="notification-card">
+            <p><i class="fas fa-exclamation-circle"></i> Assignment Deadline: Business Studies Essay due July 15, 2025</p>
+          </div>
+          <div class="notification-card">
+            <p><i class="fas fa-passport"></i> Visa Reminder: UK Student Visa renewal due August 1, 2025</p>
+          </div>
+        </section>
+
+        <!-- Guidance -->
+        <section class="guidance mt-5">
+          <h3>Guidance & Support</h3>
+          <div class="guidance-card">
+            <h4>UCAS Application Tips</h4>
+            <p>Ensure your personal statement highlights your academic achievements and career goals.</p>
+            <a href="#" class="btn btn-primary" aria-label="Learn More About UCAS Application">Learn More</a>
+          </div>
+          <div class="guidance-card">
+            <h4>Post-Study Work (PSW) Visa Info</h4>
+            <p>Eligibility: 2 years for BSc/MSc, 3 years for PhD. Fee: £880, IHS: £1,035/year.</p>
+            <a href="#" class="btn btn-primary" aria-label="View Post-Study Work Visa Details">View Details</a>
+          </div>
+        </section>
+
+        <!-- Schooling Reports -->
+        <section class="schooling-reports mt-5">
+          <h3>Schooling Reports</h3>
+          <div class="report-card" id="teacherReportForm" style="display: none;">
+            <h4>Submit Student Report</h4>
+            <form class="report-form">
+              <div class="form-group mb-4">
+                <select class="form-control" id="reportCourse" required aria-required="true" aria-label="Select Course">
+                  <option value="" disabled selected>Select Course</option>
+                  <option value="GCSE Maths">GCSE Maths</option>
+                  <option value="BSc Business">BSc Business</option>
+                </select>
+              </div>
+              <div class="form-group mb-4">
+                <textarea class="form-control" id="reportContent" placeholder="Enter student report" rows="5" required aria-required="true" aria-label="Student Report"></textarea>
+              </div>
+              <div class="form-group mb-4">
+                <input type="text" class="form-control" id="reportTeacher" placeholder="Teacher Name" required aria-required="true" aria-label="Teacher Name">
+              </div>
+              <button type="submit" class="btn btn-primary" aria-label="Submit Report">Submit Report</button>
+            </form>
+          </div>
+          <div class="report-card">
+            <h4>Your Reports</h4>
+            <div id="reportList">
+              <p>No reports available yet.</p>
+            </div>
+            <button class="btn btn-primary mt-3" id="toggleTeacherForm" aria-label="Toggle Teacher Report Form">Teacher: Submit a Report</button>
+          </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="settings mt-5">
+          <h3>Settings</h3>
+          <div class="settings-card">
+            <h4>Account Settings</h4>
+            <a href="#" class="btn btn-primary" aria-label="Manage Account">Manage Account</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+ <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <!-- Custom JavaScript -->
+<script src="{% static 'assets/js/dashboard.js' %}"></script>
+{% endblock %}

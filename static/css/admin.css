@@ -1,0 +1,51 @@
+#header {
+    background-color: #10a58c !important;  /* Navy blue */
+}
+
+#header h1, #header h1 a {
+    color: #f1faee !important;            /* Light text */
+    font-weight: bold;
+}
+
+#user-tools {
+    font-size: medium;
+    font-weight: 400;
+    color: #ffffff !important;
+}
+#user-tools a {
+    font-size: medium;
+    font-weight: 400;
+    color: #ffffff !important;
+}
+
+#header h1:before {
+    content: "";
+    display: inline-block;
+    background-image: url('/static/assets/image/ladmin_ogo.png'); /* your logo path */
+    background-size: contain;
+    width: 120px;
+    height: 60px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
+.breadcrumbs {
+  background-color: #46cbcb !important; 
+  color: #fff !important;
+}
+
+/* Optional: Sidebar app list background */
+caption {
+  background-color: #0a8277 !important;
+}
+
+/* Optional: Sidebar group title */
+#content-main h2 {
+  background-color: #0a8277 !important;
+  color: white !important;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background-color: #10a58c;
+}

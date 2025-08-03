@@ -1,30 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Join Flexible Learning An International Academy. Submit your CV and explore exciting career opportunities.">
-  <meta name="keywords" content="Flexible Learning, Careers, Job Opportunities, CV Submission, UK Education">
-  <meta name="author" content="Flexible Learning An International Academy">
-  <title>Careers - Flexible Learning An International Academy</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-  <!-- GSAP for animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{% static 'assets/css/career.css' %}">
-</head>
-<body>
+{% block title %}Career{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/career.css' %}">
+{% endblock %}
+{% block content %}
+
   <!-- Sidebar -->
   <aside class="sidebar">
     <button class="sidebar-toggle" id="sidebarToggle">
@@ -47,35 +28,7 @@
     </div>
   </aside>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="https://portal.flexiblelearning.org.uk/assets/img/portal.flexiblelearning.org.uk_alt.svg" alt="Flexible Learning An International Academy Logo" loading="lazy">
-        <span style="color: var(--dark-gray);"></span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas">
-        <i class="fas fa-bars" style="color: var(--dark-gray);"></i>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="navbarOffcanvasLabel">Menu</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../courses/">Courses</a></li>
-          <li class="nav-item"><a class="nav-link" href="../about/">About</a></li>
-          <li class="nav-item"><a class="nav-link faq-btn" href="../faq/">FAQs</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link signin-btn" href="../signup/">Sign In</a></li>
-          <li class="nav-item"><a class="nav-link active" href="../career/">Careers</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
+  
 
   <!-- Hero Section -->
   <section class="hero-section">
@@ -191,27 +144,11 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <h3>Stay Updated with Flexible Learning An International Academy</h3>
-      <form class="newsletter-form d-flex">
-        <input type="email" class="form-control" placeholder="Enter your email" required>
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
-      <p>© 2025 Flexible Learning An International Academy. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="#!"><i class="fab fa-facebook-f"></i></a>
-        <a href="#!"><i class="fab fa-twitter"></i></a>
-        <a href="#!"><i class="fab fa-instagram"></i></a>
-        <a href="#!"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-    </div>
-  </footer>
+ 
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <!-- Custom JavaScript -->
   <script src="{% static 'assets/js/career.js' %}"></script>
-</body>
-</html>
+
+  {% endblock%}
