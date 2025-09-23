@@ -22,16 +22,28 @@ def student_register(request):
 
 
 def login_view(request):
-    loginform = LoginForm(request.POST or None)  # ✅ Always initialize
+    loginform = LoginForm(request.POST or None)  # Always initialize
 
     if request.method == 'POST':
         if loginform.is_valid():
             uname = loginform.cleaned_data['username']
             pwd = loginform.cleaned_data['password']
             user = authenticate(request, username=uname, password=pwd)
+
             if user:
                 login(request, user)
+
+                # Role-based redirection
+                if user.role == 'student':
+                    return redirect('dashboard')  # URL name for student dashboard
+                elif user.role == 'teacher':
+                    return redirect('/')  # URL name for teacher dashboard
+                elif user.role == 'admin' or 'Admin':
+                    return redirect('/admin/')  # Django default admin panel
+
+                # Fallback if role doesn't match
                 return redirect('dashboard')
+
             else:
                 loginform.add_error(None, 'Invalid username or password')
 

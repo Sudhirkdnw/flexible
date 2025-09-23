@@ -2,14 +2,67 @@
 {% load static %}
 
 {% block title %}Update Profile{% endblock %}
-
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
 {% block content %}
-<div class="container mt-5">
-  <h2>Update Student Profile</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success mt-3">Save Changes</button>
-  </form>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      
+      <!-- Profile Update Card -->
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-success text-white rounded-top-4 py-3">
+          <h4 class="mb-0 text-center">
+            <i class="bi bi-person-circle me-2"></i> Update Student Profile
+          </h4>
+        </div>
+        
+        <div class="card-body p-4">
+          <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            
+            <!-- Django Form -->
+            <div class="form-container">
+              {{ form.as_p }}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-success btn-lg rounded-pill">
+                <i class="bi bi-save me-2"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
+
+<!-- Optional Custom Styling -->
+<style>
+  .form-container p {
+    margin-bottom: 1rem;
+  }
+  .form-container label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .form-container input, 
+  .form-container select, 
+  .form-container textarea {
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  .form-container input:focus, 
+  .form-container select:focus, 
+  .form-container textarea:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25,135,84,0.25);
+  }
+</style>
 {% endblock %}

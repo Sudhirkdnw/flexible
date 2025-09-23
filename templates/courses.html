@@ -8,7 +8,7 @@
  
     <!-- Courses Section -->
   <section class="courses-section" id="courses">
-    <div id="particles-js"></div>
+    {% comment %} <div id="particles-js"></div> {% endcomment %}
     <div class="container courses-content animate__animated animate__fadeInUp">
       <h2>Our Courses</h2>
       <!-- Course Eligibility and Requirements -->
@@ -53,143 +53,121 @@
         <p>By choosing UK education with us, you gain a competitive edge with qualifications that open doors to global opportunities, enhanced by practical experience and flexible learning tailored to your needs.</p>
       </div>
       <!-- Filter Section -->
-      <div class="filter-section">
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <select class="form-select" id="level-filter">
-              <option value="all">All Levels</option>
-              <option value="GCSE">GCSE</option>
-              <option value="A-Level">A-Level</option>
-              <option value="BSc">BSc</option>
-              <option value="MSc">MSc</option>
-            </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <select class="form-select" id="mode-filter">
-              <option value="all">All Modes</option>
-              <option value="Online">Online</option>
-              <option value="Face-to-Face">Face-to-Face</option>
-            </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <select class="form-select" id="psw-filter">
-              <option value="all">All PSW Eligibility</option>
-              <option value="Yes">PSW Eligible</option>
-              <option value="No">Not PSW Eligible</option>
-            </select>
-          </div>
+      <div class="filter-section mb-4">
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <select class="form-select" id="level-filter">
+        <option value="all">All Levels</option>
+        <option value="GCSE">GCSE</option>
+        <option value="A-Level">A-Level</option>
+        <option value="BSc">BSc</option>
+        <option value="MSc">MSc</option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <select class="form-select" id="mode-filter">
+        <option value="all">All Modes</option>
+        <option value="Online">Online</option>
+        <option value="Face-to-Face">Face-to-Face</option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <select class="form-select" id="psw-filter">
+        <option value="all">All PSW Eligibility</option>
+        <option value="Yes">PSW Eligible</option>
+        <option value="No">Not PSW Eligible</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+      <div class="row g-4" id="course-list">
+  
+  <!-- Example Card -->
+  <div class="row g-4" id="course-list">
+
+  <!-- Card 1 -->
+  <div class="col-md-6 col-lg-4 course-card" data-level="GCSE" data-mode="Online" data-psw="No" id="course-list">
+    <div class="card shadow border-0 h-100 rounded-4">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-success fw-bold">GCSE Mathematics</h5>
+        <p class="mb-2"><strong>Level:</strong> GCSE</p>
+        <p class="mb-2"><strong>Mode:</strong> Online</p>
+        <p class="mb-2"><strong>Fees:</strong> £38/month</p>
+        <p class="mb-2"><strong>Duration:</strong> 12 months</p>
+        <p class="mb-2"><strong>PSW Eligibility:</strong> No</p>
+        <p class="mb-2"><strong>Indian Equivalent:</strong> Class 10 (CBSE/ICSE)</p>
+        <p class="small text-muted flex-grow-1"><strong>Syllabus:</strong> Number, Algebra, Geometry, Statistics, Probability</p>
+        <div class="mt-3">
+          <button class="btn btn-success w-100 rounded-pill">Enroll Now</button>
         </div>
       </div>
-      <!-- Course Table -->
-      <div class="course-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Course</th>
-              <th>Level</th>
-              <th>Mode</th>
-              <th>Fees</th>
-              <th>Duration</th>
-              <th>PSW Eligibility</th>
-              <th>Indian Equivalent</th>
-              <th>Syllabus</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Online Courses -->
-            <tr data-level="GCSE" data-mode="Online" data-psw="No">
-              <td>GCSE Mathematics</td>
-              <td>GCSE</td>
-              <td>Online</td>
-              <td>£38/month</td>
-              <td>12 months</td>
-              <td>No</td>
-              <td>Class 10 (CBSE/ICSE)</td>
-              <td>Number, Algebra, Geometry, Statistics, Probability</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <tr data-level="GCSE" data-mode="Online" data-psw="No">
-              <td>GCSE English</td>
-              <td>GCSE</td>
-              <td>Online</td>
-              <td>£38/month</td>
-              <td>12 months</td>
-              <td>No</td>
-              <td>Class 10 (CBSE/ICSE)</td>
-              <td>Reading, Writing, Literature Analysis, Language Skills</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <tr data-level="A-Level" data-mode="Online" data-psw="No">
-              <td>A-Level Physics</td>
-              <td>A-Level</td>
-              <td>Online</td>
-              <td>£400/term</td>
-              <td>24 months</td>
-              <td>No</td>
-              <td>Class 12 (CBSE/ICSE)</td>
-              <td>Mechanics, Waves, Quantum Physics, Electricity</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <!-- On-Campus Courses -->
-            <tr data-level="A-Level" data-mode="Face-to-Face" data-psw="No">
-              <td>A-Level Physics</td>
-              <td>A-Level</td>
-              <td>Face-to-Face</td>
-              <td>£450/term</td>
-              <td>24 months</td>
-              <td>No</td>
-              <td>Class 12 (CBSE/ICSE)</td>
-              <td>Mechanics, Waves, Quantum Physics, Electricity</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <tr data-level="BSc" data-mode="Face-to-Face" data-psw="Yes">
-              <td>BSc Computer Science</td>
-              <td>BSc</td>
-              <td>Face-to-Face</td>
-              <td>£500/term</td>
-              <td>36 months</td>
-              <td>Yes</td>
-              <td>Bachelor’s Degree (e.g., B.Tech, BCA)</td>
-              <td>Programming, Algorithms, Data Structures, AI, Cybersecurity</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <tr data-level="BSc" data-mode="Face-to-Face" data-psw="Yes">
-              <td>BSc Business Management</td>
-              <td>BSc</td>
-              <td>Face-to-Face</td>
-              <td>£500/term</td>
-              <td>36 months</td>
-              <td>Yes</td>
-              <td>Bachelor’s Degree (e.g., BBA, B.Com)</td>
-              <td>Marketing, Finance, HR, Strategy, Operations</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <tr data-level="MSc" data-mode="Face-to-Face" data-psw="Yes">
-              <td>MSc International Business</td>
-              <td>MSc</td>
-              <td>Face-to-Face</td>
-              <td>£600/term</td>
-              <td>12 months</td>
-              <td>Yes</td>
-              <td>Master’s Degree (e.g., MBA, M.Com)</td>
-              <td>Global Strategy, International Marketing, Trade, Economics</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-            <tr data-level="MSc" data-mode="Face-to-Face" data-psw="Yes">
-              <td>MSc Computer Science</td>
-              <td>MSc</td>
-              <td>Face-to-Face</td>
-              <td>£600/term</td>
-              <td>12 months</td>
-              <td>Yes</td>
-              <td>Master’s Degree (e.g., M.Tech, MCA)</td>
-              <td>Advanced Algorithms, Machine Learning, Big Data, Cloud Computing</td>
-              <td><button class="btn btn-primary">Enroll Now</button></td>
-            </tr>
-          </tbody>
-        </table>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="col-md-6 col-lg-4 course-card" data-level="GCSE" data-mode="Online" data-psw="No">
+    <div class="card shadow border-0 h-100 rounded-4">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-success fw-bold">GCSE English</h5>
+        <p class="mb-2"><strong>Level:</strong> GCSE</p>
+        <p class="mb-2"><strong>Mode:</strong> Online</p>
+        <p class="mb-2"><strong>Fees:</strong> £38/month</p>
+        <p class="mb-2"><strong>Duration:</strong> 12 months</p>
+        <p class="mb-2"><strong>PSW Eligibility:</strong> No</p>
+        <p class="mb-2"><strong>Indian Equivalent:</strong> Class 10 (CBSE/ICSE)</p>
+        <p class="small text-muted flex-grow-1"><strong>Syllabus:</strong> Reading, Writing, Literature Analysis, Language Skills</p>
+        <div class="mt-3">
+          <button class="btn btn-success w-100 rounded-pill">Enroll Now</button>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="col-md-6 col-lg-4 course-card" data-level="A-Level" data-mode="Online" data-psw="No">
+    <div class="card shadow border-0 h-100 rounded-4">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-success fw-bold">A-Level Physics</h5>
+        <p class="mb-2"><strong>Level:</strong> A-Level</p>
+        <p class="mb-2"><strong>Mode:</strong> Online</p>
+        <p class="mb-2"><strong>Fees:</strong> £400/term</p>
+        <p class="mb-2"><strong>Duration:</strong> 24 months</p>
+        <p class="mb-2"><strong>PSW Eligibility:</strong> No</p>
+        <p class="mb-2"><strong>Indian Equivalent:</strong> Class 12 (CBSE/ICSE)</p>
+        <p class="small text-muted flex-grow-1"><strong>Syllabus:</strong> Mechanics, Waves, Quantum Physics, Electricity</p>
+        <div class="mt-3">
+          <button class="btn btn-success w-100 rounded-pill">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="col-md-6 col-lg-4 course-card" data-level="BSc" data-mode="Face-to-Face" data-psw="Yes">
+    <div class="card shadow border-0 h-100 rounded-4">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-success fw-bold">BSc Computer Science</h5>
+        <p class="mb-2"><strong>Level:</strong> BSc</p>
+        <p class="mb-2"><strong>Mode:</strong> Face-to-Face</p>
+        <p class="mb-2"><strong>Fees:</strong> £500/term</p>
+        <p class="mb-2"><strong>Duration:</strong> 36 months</p>
+        <p class="mb-2"><strong>PSW Eligibility:</strong> Yes</p>
+        <p class="mb-2"><strong>Indian Equivalent:</strong> Bachelor’s Degree (B.Tech, BCA)</p>
+        <p class="small text-muted flex-grow-1"><strong>Syllabus:</strong> Programming, Algorithms, Data Structures, AI, Cybersecurity</p>
+        <div class="mt-3">
+          <button class="btn btn-success w-100 rounded-pill">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  
+
+   
     </div>
   </section>
 
@@ -224,10 +202,56 @@
     </div>
   </div>
 
+<style>
+.course-card .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.course-card .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.course-card .card-title {
+  font-size: 1.2rem;
+}
+.course-card p {
+  margin-bottom: 0.4rem;
+}
+</style>
 
 
   <!-- Bootstrap JS with Fallback -->
   <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const levelFilter = document.getElementById("level-filter");
+  const modeFilter = document.getElementById("mode-filter");
+  const pswFilter = document.getElementById("psw-filter");
+  const courseItems = document.querySelectorAll(".course-item");
+
+  function filterCourses() {
+    const level = levelFilter.value;
+    const mode = modeFilter.value;
+    const psw = pswFilter.value;
+
+    courseItems.forEach(item => {
+      const matchLevel = (level === "all" || item.dataset.level === level);
+      const matchMode = (mode === "all" || item.dataset.mode === mode);
+      const matchPsw = (psw === "all" || item.dataset.psw === psw);
+
+      if (matchLevel && matchMode && matchPsw) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+
+  levelFilter.addEventListener("change", filterCourses);
+  modeFilter.addEventListener("change", filterCourses);
+  pswFilter.addEventListener("change", filterCourses);
+});
+
+
     // Fallback for Bootstrap JS
     if (typeof bootstrap === 'undefined') {
       console.warn('Bootstrap JS failed to load from CDN. Attempting to load local fallback.');

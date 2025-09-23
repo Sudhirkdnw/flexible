@@ -1,45 +1,43 @@
-from django.contrib import admin, messages 
-from django.contrib.auth.admin import UserAdmin
+from django.contrib import admin, messages
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
-from django.contrib.admin import AdminSite
-from django.contrib.auth.models import Group
-from django.contrib.auth.admin import GroupAdmin
-from core.models import User, StudentProfile
 from django.utils.html import format_html
-from django.utils import timezone
-from django.utils.timezone import now
-from django.template.response import TemplateResponse
-
-
-
-# Register your models here.
 from django.utils.translation import gettext_lazy as _
 
+from core.models import User, StudentProfile, Teacher
+
+# ==========================
+# Admin Panel Branding
+# ==========================
 admin.site.site_header = "Flexible Admin Panel"
 admin.site.site_title = "Flexible Admin"
 admin.site.index_title = "Welcome to Flexible Dashboard"
 
+
+# ==========================
+# Custom User Admin
+# ==========================
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ('Custom Fields', {'fields': ('role',)}),
     )
-    list_display = ('username', 'email', 'role')
+    list_display = ('username', 'email', 'role', 'is_staff', 'is_active')
+    list_filter = ('role', 'is_staff', 'is_active')
+    search_fields = ('username', 'email', 'role')
+    ordering = ('username',)
 
-    def get_queryset(self, request):
-        return super().get_queryset(request)
 
-admin.site.register(User, CustomUserAdmin)
-
+# ==========================
+# Student Profile Admin
+# ==========================
 @admin.register(StudentProfile)
 class StudentProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'first_name', 'last_name', 'email', 'phone_number']
+    list_display = ['user', 'first_name', 'last_name', 'email', 'phone_number', 'image_preview', 'signature_preview']
     readonly_fields = ['image_preview', 'signature_preview']
-     # ✅ SEARCH FIELDS
     search_fields = ['user__username', 'first_name', 'last_name', 'email', 'phone_number', 'nationality', 'passport_number']
-
-    # ✅ FILTERS ON SIDEBAR
     list_filter = ['gender', 'marital_status', 'nationality', 'religion']
+
     fields = (
         'user',
         'first_name', 'last_name', 'date_of_birth', 'gender', 'nationality',
@@ -52,8 +50,12 @@ class StudentProfileAdmin(admin.ModelAdmin):
 
     actions = ['mark_as_verified']
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(user__role='student')  # ✅ Sirf students dikhaye
+
     def mark_as_verified(self, request, queryset):
-        updated = queryset.update(marital_status='Verified')  # 🧠 Change to any field/action
+        updated = queryset.update(marital_status='single')  # ✅ using a valid choice
         self.message_user(request, f"{updated} student(s) marked as Verified", messages.SUCCESS)
 
     mark_as_verified.short_description = "Mark selected students as Verified"
@@ -62,22 +64,47 @@ class StudentProfileAdmin(admin.ModelAdmin):
         if obj.image:
             return format_html('<img src="{}" style="height:100px;" />', obj.image.url)
         return "(No image uploaded)"
+    image_preview.short_description = "Profile Image Preview"
 
     def signature_preview(self, obj):
         if obj.signature:
             return format_html('<img src="{}" style="height:100px;" />', obj.signature.url)
         return "(No signature uploaded)"
-
-    image_preview.short_description = "Profile Image Preview"
     signature_preview.short_description = "Signature Preview"
 
 
+# ==========================
+# Teacher Admin
+# ==========================
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = (
+        "username",      # from User
+        "role",          # from User
+        "first_name",
+        "subject",
+        "email",
+        "experience",
+        "nationality",
+        "joined_date",
+        "image_preview",
+    )
+    search_fields = ("username", "first_name", "subject", "email")
+    list_filter = ("role", "subject", "experience", "nationality")
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(role='teacher')  # ✅ Only teachers
 
-############### Register the custom admin class  #########################
-User = get_user_model()
-
-class FlexibleAdminSite(AdminSite):
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="height:100px;" />', obj.image.url)
+        return "(No image uploaded)"
+    image_preview.short_description = "Profile Image"
+# ==========================
+# Flexible Admin Site
+# ==========================
+class FlexibleAdminSite(admin.AdminSite):
     site_header = "Flexible Admin"
     site_title = "Flexible Admin Portal"
     index_title = "Welcome to Flexible Dashboard"
@@ -85,17 +112,16 @@ class FlexibleAdminSite(AdminSite):
     def index(self, request, extra_context=None):
         extra_context = extra_context or {}
 
-        # 🔢 Count logic for roles
+        # Role Counts
         total_students = User.objects.filter(role='student').count()
-        total_teachers = User.objects.filter(role='teacher').count()
+        total_teachers = Teacher.objects.filter(role='teacher').count()
         total_admins = User.objects.filter(role='admin').count()
         total_active = User.objects.filter(is_active=True).count()
 
-        # 📊 Dummy Graph Data (you can fetch from DB too)
+        # Example Stats
         students_today = 5
         today_revenue = 2999
 
-        # ✅ Merge all data into context
         extra_context.update({
             'total_students': total_students,
             'total_teachers': total_teachers,
@@ -107,13 +133,10 @@ class FlexibleAdminSite(AdminSite):
 
         return super().index(request, extra_context=extra_context)
 
+
+# Register Models to Flexible Admin Site
 flexible_admin_site = FlexibleAdminSite(name='flexible_admin')
 flexible_admin_site.register(User, CustomUserAdmin)
 flexible_admin_site.register(StudentProfile, StudentProfileAdmin)
+flexible_admin_site.register(Teacher, TeacherAdmin)
 flexible_admin_site.register(Group, GroupAdmin)
-
-
-
-
-
-

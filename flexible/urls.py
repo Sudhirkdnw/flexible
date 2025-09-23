@@ -23,8 +23,8 @@ from core.admin import flexible_admin_site  # 👈 custom admin site import karo
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('admin/', flexible_admin_site.urls),  # 👈 custom admin site use karo
+    path('admin/', admin.site.urls),
+    # path('admin/', flexible_admin_site.urls),  # 👈 custom admin site use karo
     path('', include('home.urls')),
     path('core/', include('core.urls')),
 ] 
