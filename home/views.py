@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from course.models import Course
 
 # Create your views here.
 
@@ -12,7 +13,17 @@ def career(request):
     return render(request, 'career.html')
 
 def courses(request):
-    return render(request, 'courses.html')
+    # Import Course model
+    
+    # Fetch all courses from database
+    courses = Course.objects.all()
+    
+    # Create context dictionary with courses data
+    context = {
+        'courses': courses
+    }
+ 
+    return render(request, 'courses.html', context)
 
 def faq(request):
     return render(request, 'faq.html')

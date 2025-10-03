@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from core.admin import flexible_admin_site  # 👈 custom admin site import karo
+# from core.admin import flexible_admin_site  # 👈 custom admin site import karo
 
 
 
@@ -27,6 +27,7 @@ urlpatterns = [
     # path('admin/', flexible_admin_site.urls),  # 👈 custom admin site use karo
     path('', include('home.urls')),
     path('core/', include('core.urls')),
+    path('course/', include('course.urls')),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

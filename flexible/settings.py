@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS +=[
               'home', 
               'core',
+              'course',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,10 @@ AUTH_USER_MODEL = 'core.User'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# KEY_ID  = "rzp_test_ROwZnTSdnjWUTd"
+# KEY_SECRET  = "0lbfSg1c1H9o5cLFUk4YNbgn"    
+
+KEY_ID  = "rzp_test_26WYBJdjNWA64A"
+KEY_SECRET  = "0AORmLYrdmWn4Pxvs0ai3EuH"

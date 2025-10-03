@@ -10,9 +10,9 @@ from core.models import User, StudentProfile, Teacher
 # ==========================
 # Admin Panel Branding
 # ==========================
-admin.site.site_header = "Flexible Admin Panel"
-admin.site.site_title = "Flexible Admin"
-admin.site.index_title = "Welcome to Flexible Dashboard"
+admin.site.site_header = "Edvantage Admin Panel"
+admin.site.site_title = "Edvantage Admin"
+admin.site.index_title = "Welcome to Edvantage Dashboard"
 
 
 # ==========================
@@ -102,12 +102,12 @@ class TeacherAdmin(admin.ModelAdmin):
         return "(No image uploaded)"
     image_preview.short_description = "Profile Image"
 # ==========================
-# Flexible Admin Site
+# Edvantage Admin Site
 # ==========================
 class FlexibleAdminSite(admin.AdminSite):
-    site_header = "Flexible Admin"
-    site_title = "Flexible Admin Portal"
-    index_title = "Welcome to Flexible Dashboard"
+    site_header = "Edvantage Admin"
+    site_title = "Edvantage Admin Portal"
+    index_title = "Welcome to Edvantage Dashboard"
 
     def index(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -134,7 +134,7 @@ class FlexibleAdminSite(admin.AdminSite):
         return super().index(request, extra_context=extra_context)
 
 
-# Register Models to Flexible Admin Site
+# Register Models to Edvantage Admin Site
 flexible_admin_site = FlexibleAdminSite(name='flexible_admin')
 flexible_admin_site.register(User, CustomUserAdmin)
 flexible_admin_site.register(StudentProfile, StudentProfileAdmin)

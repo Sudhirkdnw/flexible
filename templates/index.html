@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Home - Flexible{% endblock %}
+{% block title %}Home - Edvantage{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 {% endblock %}
@@ -16,15 +16,15 @@
           <div class="carousel-caption">
             <h1 class="animate__animated animate__fadeInDown">Develop Your Dream</h1>
             <p class="animate__animated animate__fadeInUp delay-1s">UK-based courses for international students worldwide.</p>
-            <a href="#courses" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
+            <a href="{% url 'courses' %}" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
           </div>
         </div>
         <div class="carousel-item">
           <img src="https://images.pexels.com/photos/3183196/pexels-photo-3183196.jpeg?auto=compress&cs=tinysrgb&w=1200&h=700&fit=crop" class="d-block w-100" alt="International students" loading="lazy">
           <div class="carousel-caption">
-            <h1 class="animate__animated animate__fadeInDown">Flexible Learning An International Academy</h1>
+            <h1 class="animate__animated animate__fadeInDown">Edvantage Learning An International Academy</h1>
             <p class="animate__animated animate__fadeInUp delay-1s">Transforming global education with UK standards.</p>
-            <a href="#courses" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
+            <a href="{% url 'courses' %}" class="btn btn-primary animate__animated animate__pulse animate__infinite">Explore Courses</a>
           </div>
         </div>
       </div>
@@ -48,12 +48,12 @@
   <!-- Features Overview -->
   <div class="features">
     <div class="container">
-      <h2 class="animate__animated animate__fadeInDown">Why Choose Flexible Learning An International Academy?</h2>
+      <h2 class="animate__animated animate__fadeInDown">Why Choose Edvantage Learning An International Academy?</h2>
       <div class="row g-4">
         <div class="col-md-3">
           <div class="feature-card animate__animated animate__fadeInUp">
             <i class="fas fa-laptop"></i>
-            <h3>Flexible Learning</h3>
+            <h3>Edvantage Learning</h3>
             <p>Study at your pace, anywhere globally.</p>
           </div>
         </div>
@@ -91,7 +91,7 @@
           <div class="card course-card animate__animated animate__fadeInUp">
             <div class="card-body">
               <i class="fas fa-laptop-code"></i>
-              <h3 class="card-title">Business Management (UK Level 3)</h3>
+              <h3 class="card-title">Business Management <br> (UK Level 3)</h3>
               <p><strong>Duration:</strong> 2 Years</p>
               <div class="duration-bar" style="--progress-width: 66%"><span></span></div>
               <p class="card-text">Master marketing and management with UK standards.</p>
@@ -103,7 +103,7 @@
           <div class="card course-card animate__animated animate__fadeInUp delay-1s">
             <div class="card-body">
               <i class="fas fa-code"></i>
-              <h3 class="card-title">Computer Science (UK Level 3)</h3>
+              <h3 class="card-title">Computer Science <br>(UK Level 3)</h3>
               <p><strong>Duration:</strong> 1.5 Years</p>
               <div class="duration-bar" style="--progress-width: 50%"><span></span></div>
               <p class="card-text">Develop coding and tech skills with UK curriculum.</p>
@@ -115,10 +115,10 @@
           <div class="card course-card animate__animated animate__fadeInUp delay-2s">
             <div class="card-body">
               <i class="fas fa-tools"></i>
-              <h3 class="card-title">Engineering (UK Level 3)</h3>
+              <h3 class="card-title">Engineering<br>(UK Level 3)</h3>
               <p><strong>Duration:</strong> 2 Years</p>
               <div class="duration-bar" style="--progress-width: 66%"><span></span></div>
-              <p class="card-tested with UK methodologies.</p>
+              <p class="card-text">Focus on technical skills for future engineers.</p>
               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#engineeringModal">Learn More</button>
             </div>
           </div>
@@ -192,8 +192,8 @@
   <!-- About Section -->
   <section class="about" id="about">
     <div class="container about-content">
-      <h2 class="animate__animated animate__fadeInDown">About Flexible Learning An International Academy</h2>
-      <p class="animate__animated animate__fadeInUp">Flexible Learning An International Academy brings UK-based education to international students, fostering global success through flexible online learning.</p>
+      <h2 class="animate__animated animate__fadeInDown">About Edvantage Learning An International Academy</h2>
+      <p class="animate__animated animate__fadeInUp">Edvantage Learning An International Academy brings UK-based education to international students, fostering global success through Edvantage online learning.</p>
       <p class="animate__animated animate__fadeInUp delay-1s">Our mission is to empower students with world-class qualifications and skills for a competitive global market.</p>
       <ul class="animate__animated animate__fadeInUp delay-2s">
         <li><i class="fas fa-globe"></i> Accessible education for international students.</li>
@@ -233,13 +233,13 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="testimonial-card">
-              <p>"Flexible Learning An International Academy opened doors to a UK education I never thought possible!"</p>
+              <p>"Edvantage Learning An International Academy opened doors to a UK education I never thought possible!"</p>
               <cite>John Doe, Business Management Graduate</cite>
             </div>
           </div>
           <div class="carousel-item">
             <div class="testimonial-card">
-              <p>"The flexibility and quality of instruction at Flexible Learning An International Academy transformed my career path."</p>
+              <p>"The flexibility and quality of instruction at Edvantage Learning An International Academy transformed my career path."</p>
               <cite>Jane Smith, Computer Science Graduate</cite>
             </div>
           </div>
@@ -265,7 +265,7 @@
   <!-- Contact Section -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2 class="animate__animated animate__fadeInDown">Contact Flexible Learning An International Academy</h2>
+      <h2 class="animate__animated animate__fadeInDown">Contact Edvantage Learning An International Academy</h2>
       <form class="contact-form animate__animated animate__fadeInUp">
         <div class="form-group mb-4">
           <input type="text" class="form-control" id="name" placeholder="Your Name" required>

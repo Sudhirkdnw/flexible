@@ -1,12 +1,15 @@
-
-
 :root {
   --primary-green: #71ab0c;
   --secondary-green: #71ab0c;
   --black: #000000;
-  --white: #FFFFFF;
-  --light-gray: #F9FAFB;
-  --gradient-bg: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--white) 100%);
+  --white: #ffffff;
+  --light-gray: #f9fafb;
+  --gradient-bg: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--secondary-green) 50%,
+    var(--white) 100%
+  );
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: 1px solid rgba(255, 255, 255, 0.2);
   --dark-gray: #333333;
@@ -18,7 +21,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--white);
   color: var(--black);
   line-height: 1.8;
@@ -37,7 +40,8 @@ body {
 }
 
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(113, 171, 12, 0.5);
   }
   50% {
@@ -46,7 +50,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -72,8 +77,8 @@ img {
 }
 
 img:not([src]) {
-  background-color: #F3F4F6;
-  border: 1px solid #E5E7EB;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
 }
 
 /* Navbar */
@@ -95,7 +100,7 @@ img:not([src]) {
 
 .navbar-brand {
   color: var(--dark-gray) !important;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   display: flex;
@@ -138,7 +143,7 @@ img:not([src]) {
 .nav-link::after,
 .signin-btn::after,
 .faq-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 3px;
@@ -217,13 +222,17 @@ img:not([src]) {
 }
 
 .carousel-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.1)
+  );
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 1;
@@ -246,7 +255,7 @@ img:not([src]) {
 }
 
 .carousel-caption h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 4rem;
   font-weight: 900;
   text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
@@ -273,7 +282,7 @@ img:not([src]) {
 }
 
 .carousel-caption .btn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -303,7 +312,7 @@ img:not([src]) {
 }
 
 .cta-banner h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 3.5rem;
   font-weight: 900;
   margin-bottom: 30px;
@@ -332,7 +341,7 @@ img:not([src]) {
 }
 
 .features h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--primary-green);
   font-size: 3.5rem;
   font-weight: 900;
@@ -361,7 +370,7 @@ img:not([src]) {
 }
 
 .feature-card h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--primary-green);
   font-size: 2rem;
   font-weight: 700;
@@ -380,7 +389,7 @@ img:not([src]) {
 
 .courses h2,
 .courses-content h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--primary-green);
   font-size: 3.8rem;
   padding-top: 20px;
@@ -400,7 +409,7 @@ img:not([src]) {
 .course-card {
   border: none;
   border-radius: 25px;
-  background: linear-gradient(145deg, var(--white), #E6F7ED);
+  background: linear-gradient(145deg, var(--white), #e6f7ed);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
@@ -417,7 +426,7 @@ img:not([src]) {
 }
 
 .course-card .card-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--primary-green);
   font-size: 1.8rem;
   font-weight: 700;
@@ -429,7 +438,7 @@ img:not([src]) {
 
 .duration-bar {
   height: 12px;
-  background-color: #E5E7EB;
+  background-color: #e5e7eb;
   border-radius: 6px;
   margin: 20px 0;
 }
@@ -468,7 +477,7 @@ img:not([src]) {
 .course-card .btn-primary::after,
 .contact-form .btn-primary::after,
 .compare-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -500,7 +509,7 @@ img:not([src]) {
 }
 
 .about h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--primary-green);
   font-size: 3.5rem;
   font-weight: 900;
@@ -521,7 +530,7 @@ img:not([src]) {
 }
 
 .about-content h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   text-align: center;
@@ -567,7 +576,7 @@ img:not([src]) {
 }
 
 .info-section h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--dark-gray);
@@ -613,7 +622,7 @@ img:not([src]) {
 .team-card h4,
 .headteacher-card h4,
 .achievement-card h4 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--dark-gray);
@@ -660,7 +669,7 @@ img:not([src]) {
 }
 
 .contact h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--primary-green);
   font-size: 3rem;
   font-weight: 900;
@@ -670,7 +679,7 @@ img:not([src]) {
 .contact-form .form-control {
   border-radius: 12px;
   padding: 18px;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
   font-size: 1.2rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -696,7 +705,7 @@ footer {
 .newsletter-form .form-control {
   border-radius: 12px 0 0 12px;
   padding: 15px;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
   font-size: 1.1rem;
 }
 
@@ -744,13 +753,13 @@ footer {
   padding: 20px;
   text-align: center;
   font-size: 1.2rem;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
 }
 
 .comparison-table th {
   background: var(--primary-green);
   color: var(--white);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
 }
 
@@ -777,7 +786,7 @@ footer {
 .filter-section .form-select {
   border-radius: 12px;
   padding: 12px;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
   font-size: 1.1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -813,11 +822,11 @@ footer {
   text-align: left;
   font-size: 1rem;
   color: var(--dark-gray);
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .course-table th {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
   background: var(--light-gray);
@@ -901,14 +910,14 @@ footer {
   gap: 10px;
   padding: 10px;
   background: var(--white);
-  border-top: 1px solid #E5E7EB;
+  border-top: 1px solid #e5e7eb;
 }
 
 .chatbot-input input,
 .chatbot-input select {
   flex: 1;
   border-radius: 10px;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
   padding: 10px;
   font-size: 1rem;
 }
@@ -946,7 +955,7 @@ footer {
 }
 
 .help-popup::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   right: 30px;
@@ -958,7 +967,7 @@ footer {
 }
 
 .help-popup h5 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--dark-gray);
@@ -1216,7 +1225,7 @@ footer {
 }
 
 .faq-container h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   text-align: center;
@@ -1242,7 +1251,7 @@ footer {
 }
 
 .faq-item h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--dark-gray);
@@ -1251,7 +1260,7 @@ footer {
 }
 
 .faq-item h4 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--dark-gray);
@@ -1261,7 +1270,7 @@ footer {
 
 .faq-item h3::after,
 .faq-item h4::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 3px;
@@ -1295,8 +1304,8 @@ footer {
 }
 
 .faq-item ul li::before {
-  content: '\f058';
-  font-family: 'Font Awesome 6 Free';
+  content: "\f058";
+  font-family: "Font Awesome 6 Free";
   font-weight: 900;
   color: var(--primary-green);
   position: absolute;
@@ -1319,13 +1328,13 @@ footer {
   padding: 15px;
   text-align: center;
   font-size: 1rem;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
 }
 
 .faq-table th {
   background: var(--primary-green);
   color: var(--white);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
 }
 
@@ -1338,146 +1347,116 @@ footer {
   transition: background 0.3s ease;
 }
 
-    .auth-section {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-      background: var(--white);
-      color: var(--dark-gray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 150px; /* Increased padding to account for fixed navbar */
-      padding-bottom: 100px;
-    }
+.auth-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--white);
+  color: var(--dark-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 150px; /* Increased padding to account for fixed navbar */
+  padding-bottom: 100px;
+}
 
-  #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
-    .auth-content {
-      position: relative;
-      z-index: 2;
-      max-width: 500px;
-      width: 100%;
-      background: var(--glass-bg);
-      border: var(--glass-border);
-      border-radius: 25px;
-      padding: 40px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      text-align: center; /* Center form content */
-    }
-    .auth-content h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      text-align: center;
-      color: var(--dark-gray);
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
-      animation: typewriter 4s steps(80) forwards;
-      margin-bottom: 30px;
-    }
-    .auth-form .form-control {
-      border-radius: 12px;
-      padding: 18px;
-      border: 1px solid #D1D5DB;
-      font-size: 1.2rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .auth-form .form-control:focus {
-      border-color: var(--primary-green);
-      box-shadow: 0 0 10px rgba(113, 171, 12, 0.5);
-    }
-    .auth-form .btn-primary {
-      background: var(--primary-green);
-      border: none;
-      border-radius: 50px;
-      padding: 18px 40px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    .auth-form .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transition: left 0.4s ease;
-    }
-    .auth-form .btn-primary:hover::after {
-      left: 0;
-    }
-    .auth-form .btn-primary:hover {
-      background: var(--secondary-green);
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      animation: glow 1.5s infinite;
-    }
-    .auth-form .form-check-label {
-      color: var(--dark-gray);
-      font-size: 1rem;
-    }
-    .auth-form .form-check-input:checked {
-      background-color: var(--primary-green);
-      border-color: var(--primary-green);
-    }
-    .auth-form a {
-      color: var(--primary-green);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .auth-form a:hover {
-      color: var(--secondary-green);
-      text-decoration: underline;
-    }
-    .form-toggle {
-      cursor: pointer;
-    }
-  
-    .offcanvas-body{
-          background-color: white;
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.auth-content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  width: 100%;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  text-align: center; /* Center form content */
+}
+.auth-content h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+  color: var(--dark-gray);
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  animation: typewriter 4s steps(80) forwards;
+  margin-bottom: 30px;
+}
+.auth-form .form-control {
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid #d1d5db;
+  font-size: 1.2rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.auth-form .form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 10px rgba(113, 171, 12, 0.5);
+}
+.auth-form .btn-primary {
+  background: var(--primary-green);
+  border: none;
+  border-radius: 50px;
+  padding: 18px 40px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.auth-form .btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease;
+}
+.auth-form .btn-primary:hover::after {
+  left: 0;
+}
+.auth-form .btn-primary:hover {
+  background: var(--secondary-green);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  animation: glow 1.5s infinite;
+}
+.auth-form .form-check-label {
+  color: var(--dark-gray);
+  font-size: 1rem;
+}
+.auth-form .form-check-input:checked {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+}
+.auth-form a {
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 600;
+}
+.auth-form a:hover {
+  color: var(--secondary-green);
+  text-decoration: underline;
+}
+.form-toggle {
+  cursor: pointer;
+}
 
-    }
-
-@media (max-width: 768px) {
-  .course-table {
-    padding: 10px;
-    overflow-x: auto;
-  }
-
-  .course-table table {
-    min-width: 1000px; /* Ensures horizontal scroll */
-    display: block;
-  }
-
-  .course-table::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .course-table::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-  }
-
-  .course-table th,
-  .course-table td {
-    white-space: nowrap;
-    font-size: 0.75rem;
-    padding: 6px;
-  }
-
-  .course-table .btn-primary {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
+.offcanvas-body {
+  background-color: white;
+}
+.courseimage {
+  width: 100%;
+  height: 30vh;
 }
