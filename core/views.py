@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from core.models import StudentProfile
+from course.models import UserCourse
+
 
 User = get_user_model()
 
@@ -49,13 +51,18 @@ def login_view(request):
 
     return render(request, 'core/login.html', {'form': loginform})
 
-@login_required
+@login_required(login_url='login')
 def dashboard(request):
     user = request.user
-    profile = getattr(user, 'studentprofile', None)
+    profile = getattr(user, 'studentprofile', None)  # fetch student profile if exists
+    user_courses = UserCourse.objects.filter(user=user)  # fetch user courses
 
-    return render(request, 'core/dashboard.html', {'user': user, 'profile': profile})
-
+    context = {
+        'user': user,
+        'profile': profile,
+        'user_courses': user_courses
+    }
+    return render(request, 'core/dashboard.html', context)
 
 @login_required
 def logout_view(request):

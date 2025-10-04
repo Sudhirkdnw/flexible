@@ -9,7 +9,6 @@ from time import time
 
 import razorpay
 client = razorpay.Client(auth=(KEY_ID, KEY_SECRET))
-# client = razorpay.Client(auth=('rzp_test_ROftEppE6r642r', 'aX9xYvZ3aT77hwv7oOkdi6LG'))
 
 
 @login_required(login_url='/login')
@@ -42,7 +41,7 @@ def checkout(request , slug):
                 "email" : user.email, 
                 "name" : f'{user.first_name} {user.last_name}'
             }
-            reciept = f"codewithvirendra-{int(time())}"
+            reciept = f"sudhirkumar-{int(time())}"
             order = client.order.create(
                 {'receipt' :reciept , 
                 'notes' : notes , 
@@ -68,7 +67,7 @@ def checkout(request , slug):
     }
     return  render(request , template_name="courses/check_out.html" , context=context )    
 
-@login_required(login_url='/login')
+@login_required(login_url='/core/login')
 @csrf_exempt
 def verifyPayment(request):
     if request.method == "POST":
@@ -93,7 +92,7 @@ def verifyPayment(request):
             payment.save()
 
             return redirect('my-courses')   
-
+  
         except:
             return HttpResponse("Invalid Payment Details")
         

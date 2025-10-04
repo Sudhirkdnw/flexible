@@ -30,4 +30,5 @@ urlpatterns = [
     path('course/', include('course.urls')),
 ] 
 
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
