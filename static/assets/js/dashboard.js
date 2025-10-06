@@ -76,17 +76,7 @@
       // Initial load of assigned courses
       loadAssignedCourses();
 
-      // My Courses Toggle
-      document.getElementById('myCoursesBtn').addEventListener('click', function() {
-        const courseList = document.getElementById('courseList');
-        if (courseList.style.display === 'none' || courseList.style.display === '') {
-          courseList.style.display = 'block';
-          this.textContent = 'Hide My Courses';
-        } else {
-          courseList.style.display = 'none';
-          this.textContent = 'View My Courses';
-        }
-      });
+  
 
       // Open Courses Modal
       const openCoursesList = document.getElementById('openCoursesList');

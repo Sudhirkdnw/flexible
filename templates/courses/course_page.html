@@ -1,137 +1,224 @@
-{% extends 'courses/base.html' %}
-{% load static %}
-{% load course_custom_tags %}
-
-{%block title%}
-Courses
-{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="{% static 'courses/css/scrollbar.css'%}">
-
-{% endblock %}
-
-{% block js %}
-<script src="{% static 'courses/js/course_page.js' %}"></script>
-{% endblock %}
-
-{%block content%}
-
+{% extends 'base.html' %} {% load static %} {% load course_custom_tags %} 
+{%block title %}{{ course.name }} | Course Player {% endblock %} 
+{% block extra_css%}
+<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 <style>
-    .no-preview{
-        cursor: not-allowed;
-    }   
-    a:hover{
-        text-decoration: none;
-    }
+  .course-player-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+  }
 
-    a{
-        color: rgb(61, 59, 59);
-    }
+  .video-section {
+    flex: 3;
+    background: #0f172a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
 
-    .active-video-link{
-        color: rgb(206, 202, 196);
-    }
+  .video-section iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+  }
 
-    .active-video-link:hover{
-        text-decoration: none;
-        color: rgb(255, 255, 255);
-    }
-    
+  .lecture-list {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 15px;
+    height: 420px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .lecture-list h5 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .lecture-list a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: #334155;
+    transition: 0.3s ease;
+  }
+
+  .lecture-list a:hover {
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .active-video-link {
+    background: #1d4ed8 !important;
+    color: #fff !important;
+  }
+
+  .no-preview {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .course-details-section {
+    margin-top: 40px;
+  }
+
+  .course-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+  }
+
+  .course-card h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  ol {
+    padding-left: 20px;
+  }
+
+  ol li {
+    margin-bottom: 6px;
+  }
+
+  .sidebar-toggle {
+    z-index: 999;
+  }
 </style>
-<div class="container-fluid">
-    <div>
-        
-        <br>
+{% endblock %} 
+{% block content %}
 
-        <div class="card p-3">
-            <div class="row">
-                <!-- youtube player -->
-                <div class="col">
-                    <div class="mx-auto">
-                        <iframe id='player' class="mx-auto" width="100%" height="315"
-                            src="https://www.youtube.com/embed/{{video.video_id}}" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
-                </div>
+<!-- Sidebar -->
+<aside class="sidebar">
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+    <i class="fas fa-arrow-left"></i>
+  </button>
 
-                <!-- leacture list -->
-                <div class="col-3">
-                    <ul id='video_list' class="list-group overflow-y-scroll">
-
-                        {% is_enrolled request course as enrolled %}
-                        {% for v in videos %}
-                            <li
-                             class="list-group-item {% if v == video %} active-video {% endif %} ">
-                             <a class="
-                             
-                             {% if not enrolled and not v.is_preview %} text-muted no-preview {% endif %}
-                             {% if v == video %} active-video-link {% endif %}
-                             
-                             " href="?lecture={{v.serial_number}}">
-                                 {{v}}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- course details -->
-
-
-        <div class="mt-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{course.name}}</h5>
-                    <p class="card-text">{{course.description}}</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Prerequite -->
-        <div class="mt-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Prerequisite</h5>
-                    <p class="card-text">
-                    <ol>
-                        {% for pre in course.prerequisite_set.all %}
-                        <li class="">{{pre.description}}</li>
-                        {% endfor %}
-                    </ol>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Learnngs -->
-        <div class="mt-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Learnings</h5>
-                    <p class="card-text">
-                    <ol>
-                        {% for l in course.learning_set.all %}
-                        <li class="">{{l.description}}</li>
-                        {% endfor %}
-                    </ol>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- learning end -->
-        <br>
-        <br>
-        <br>
-
+  <div class="sidebar-content animate__animated animate__fadeInLeft">
+    <h2>My Courses</h2>
+    <div class="courses-list">
+      {% for uc in user_courses %}
+      <div class="course-item">
+        <h4>{{ uc.course.name }}</h4>
+        <a
+          href="../../course/course/{{ uc.course.slug }}"
+          class="btn btn-primary w-100"
+          style="height: 30px"
+          >View</a
+        >
+      </div>
+      {% endfor %}
+      <a
+        href="{% url 'my-courses' %}"
+        class="btn btn-outline-primary mt-3 w-100"
+        >All Courses</a
+      >
     </div>
 
-</div>
+    <div class="mt-4">
+      <a
+        href="{% url 'logout' %}"
+        class="btn btn-danger w-100"
+        style="height: 40px"
+        >Log Out</a
+      >
+    </div>
+  </div>
+</aside>
 
-{%endblock%}
+<!-- Main Course Player -->
+<section class="main-content">
+  <div id="particles-js"></div>
+  <div class="container">
+    <h1 class="mt-4">{{ course.name }}</h1>
+    <p>{{ course.description }}</p>
 
+    <div class="course-player-container">
+      <!-- Video Section -->
+      <div class="video-section">
+        <iframe
+          id="player"
+          src="https://www.youtube.com/embed/{{ video.video_id }}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- Lecture List -->
+      <div class="lecture-list">
+        <h5><i class="fas fa-video"></i> Lectures</h5>
+        <ul class="list-unstyled">
+          {% is_enrolled request course as enrolled %} {% for v in videos %}
+          <li>
+            <a
+              class="{% if not enrolled and not v.is_preview %} no-preview {% endif %} {% if v == video %} active-video-link {% endif %}"
+              href="?lecture={{ v.serial_number }}"
+            >
+              <i class="fas fa-play-circle"></i> {{ v }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Course Details -->
+    <div class="course-details-section">
+      <div class="course-card">
+        <h4><i class="fas fa-info-circle"></i> Course Overview</h4>
+        <p>{{ course.description }}</p>
+      </div>
+
+      <div class="course-card">
+        <h4><i class="fas fa-book-reader"></i> Prerequisites</h4>
+        <ol>
+          {% for pre in course.prerequisite_set.all %}
+          <li>{{ pre.description }}</li>
+          {% empty %}
+          <li>No prerequisites listed.</li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <div class="course-card">
+        <h4><i class="fas fa-lightbulb"></i> Learnings</h4>
+        <ol>
+          {% for l in course.learning_set.all %}
+          <li>{{ l.description }}</li>
+          {% empty %}
+          <li>No learning outcomes added yet.</li>
+          {% endfor %}
+        </ol>
+      </div>
+        <!-- Resource Download -->
+        <div class="course-card">
+            <h4><i class="fas fa-download"></i> Resources</h4>
+            <ul>
+                {% if course.resource %}
+                <a href="{{ course.resource.url }}" class="download-btn" download>
+                  <i class="fas fa-download"></i> Download Resource
+                </a>
+              {% else %}
+                <p style="color:#94a3b8;">No downloadable resource available for this course.</p>
+              {% endif %}
+            </ul>
+        </div>
+  
+    </div>
+  </div>
+</section>
+
+<script src="{% static 'assets/js/dashboard.js' %}"></script>
+{% endblock %}

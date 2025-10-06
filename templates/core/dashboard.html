@@ -77,26 +77,14 @@
     </div>
 
     <div class="courses-list">
-      <button
+      <a
+        href="{% url 'my-courses' %}"
         class="btn btn-primary w-100"
-        id="myCoursesBtn"
         style="height: 30px; margin-top: 10px"
-        aria-label="Toggle My Courses"
       >
         View My Courses
-      </button>
-      <div id="courseList" style="display: none">
-        <h3>Enrolled Courses</h3>
-        <div class="course-item">
-          <h4>GCSE Maths</h4>
-          <p>Status: In Progress | Completion: 75%</p>
-        </div>
-        <div class="course-item">
-          <h4>BSc Business</h4>
-          <p>Status: Enrolled | Starts: August 1, 2025</p>
-        </div>
-      </div>
-    </div>
+    </a>
+     
     <div class="grades-list">
       <button
         class="btn btn-primary w-100"
@@ -111,15 +99,7 @@
         <canvas id="gradesChart"></canvas>
       </div>
     </div>
-    <div class="mt-3">
-      <button
-        class="btn btn-primary w-100"
-        style="height: 30px; margin-top: 10px"
-        aria-label="View Attendance"
-      >
-        View Attendance
-      </button>
-    </div>
+  
     <div class="mt-3">
       <a
         href="{% url 'logout' %}"
@@ -188,12 +168,11 @@
           </div>
           <p>Insights: Revise algebra to improve your quiz scores.</p>
           <ul class="materials-list">
-            <li><a href="#">Video: Algebra Basics</a></li>
-            <li><a href="#">Quiz: Quadratic Equations</a></li>
-            <li><a href="#">Lecture Notes: Trigonometry</a></li>
+            <li><a href="#">{{uc.course.learning}}</a></li>
+           
           </ul>
           <a
-            href="/course/{{uc.course.slug}}"
+            href="../../course/course/{{uc.course.slug}}"
             class="btn btn-primary"
             aria-label="View GCSE Maths Course"
             >View Course</a
@@ -248,97 +227,7 @@
         </div>
       </section>
 
-      <!-- Progress -->
-      <section class="progress mt-5">
-        <h3 class="section-title">📈 Your Learning Progress</h3>
-
-        <div class="course-card progress-card">
-          <div class="progress-header">
-            <h4>Progress Summary</h4>
-            <canvas id="progressChart" aria-label="Progress Chart"></canvas>
-          </div>
-
-          <div class="progress-metrics mt-4">
-            <div class="metric-card">
-              <h5>📊 Avg. Quiz Score</h5>
-              <p>85%</p>
-            </div>
-            <div class="metric-card">
-              <h5>✅ Completion Rate</h5>
-              <p>60%</p>
-            </div>
-            <div class="metric-card">
-              <h5>⏱️ Time Spent</h5>
-              <p>45 hrs</p>
-            </div>
-          </div>
-
-          <div class="progress-details mt-4">
-            <h5 class="mb-2">📚 Detailed Course Breakdown</h5>
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped">
-                <thead class="table-success">
-                  <tr>
-                    <th>Course</th>
-                    <th>Quizzes</th>
-                    <th>Assignments</th>
-                    <th>Progress</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>GCSE Maths</td>
-                    <td>80%</td>
-                    <td>90%</td>
-                    <td>75%</td>
-                  </tr>
-                  <tr>
-                    <td>BSc Business</td>
-                    <td>70%</td>
-                    <td>75%</td>
-                    <td>20%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div
-            class="milestone mt-4 d-flex align-items-center gap-3 p-3 bg-light rounded"
-          >
-            <i class="fas fa-trophy fa-2x text-warning"></i>
-            <p class="mb-0">
-              <strong>Milestone:</strong> Completed 75% of GCSE Maths!
-            </p>
-          </div>
-
-          <div class="insights mt-4">
-            <h5 class="mb-2">🔍 Recommendations</h5>
-            <ul class="list-group">
-              <li class="list-group-item">
-                ✅ Revise algebra to boost your GCSE Maths quiz scores.
-              </li>
-              <li class="list-group-item">
-                ✅ Focus on marketing strategies for BSc Business coursework.
-              </li>
-              <li class="list-group-item">
-                ✅ Review lecture notes on trigonometry before the next mock
-                exam.
-              </li>
-            </ul>
-          </div>
-
-          <div class="text-end mt-4">
-            <a
-              href="#"
-              class="download-report-btn btn btn-success"
-              aria-label="Download Progress Report"
-            >
-              <i class="fas fa-download me-2"></i>Download Progress Report
-            </a>
-          </div>
-        </div>
-      </section>
+    
 
       <!-- Notifications -->
       <section class="notifications mt-5" style="display: none">

@@ -3,635 +3,204 @@
 {% load course_custom_tags %}
 {% block title %}Home - EdVantage{% endblock %}
 {% block extra_css %}
-  {% comment %} <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> {% endcomment %}
-  <link rel="stylesheet" href="{% static 'assets/css/course.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}"> {% endcomment %}
+
 
 {% endblock %}
 {% block content %}
-<div id="particles-js"></div>
+  <section class="courses-section" id="courses">
+    {% comment %} <div id="particles-js"></div> {% endcomment %}
+    <div class="container courses-content animate__animated animate__fadeInUp">
+      <h2>Our Courses</h2>
 
+     
+          <!-- FILTER SECTION -->
+          <div class="crs-filter mb-5">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <select class="form-select crs-filter-select" id="crs-filter-level">
+                  <option value="all">All Levels</option>
+                  <option value="GCSE">GCSE</option>
+                  <option value="A-Level">A-Level</option>
+                  <option value="AS-Level">AS-Level</option>
+                  <option value="O-Level">O-Level</option>
+                  <option value="AQA">AQA</option>                  
+                  <option value="BSc">BSc</option>
+                  <option value="MSc">MSc</option>
+                  <option value="PhD">PhD</option>
 
-<div class="container">
-  <h2 class="level-header">Explore Your Academic Journey</h2>
-  <p class="text-center">
-    Welcome to our course guide! This page outlines subject pathways from
-    GCSE Foundation to A-Level, tailored to various career streams. Choose
-    your path based on your interests and future goals.
-  </p>
-
-  <div class="course-section">
-    <h3 class="level-header">GCSE Foundation (9th/10th)</h3>
-    <div class="course-card" data-video-id="dQw4w9WgXcQ">
-      <h3>Core Subjects</h3>
-      <p class="course-description">
-        Fundamental subjects to build a strong academic foundation.
-      </p>
-      <ul>
-        <li>1. Mathematics</li>
-        <li>2. Physics</li>
-        <li>3. Chemistry</li>
-        <li>4. Biology</li>
-        <li>5. English Language</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Core Subjects Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select class="form-select crs-filter-select" id="crs-filter-mode">
+                  <option value="all">All Modes</option>
+                  <option value="Online">Online</option>
+                  <option value="Face-to-Face">Face-to-Face</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select class="form-select crs-filter-select" id="crs-filter-psw">
+                  <option value="all">All PSW Eligibility</option>
+                  <option value="Yes">PSW Eligible</option>
+                  <option value="No">Not PSW Eligible</option>
+                </select>
+              </div>
+            </div>
+          </div>
+      
+    <!-- Courses Section -->
+    <div class="crs-container row g-4" id="crs-list">
+      {% for course in courses %}
+      <div class="col-md-6 col-lg-4 crs-item"
+           data-level="{{ course.level|default:'GCSE' }}"
+           data-mode="{{ course.mode|default:'Online' }}"
+           data-psw="{{ course.psw_eligible|default:'No' }}">
+    
+        <div class="crs-card shadow-sm border-0 h-100 text-center p-4">
+          <h4 class="crs-title mb-2">{{ course.name }}</h4>
+          <p class="crs-subtext mb-3">{{ course.description|default:"Focus on key skills for this course." }}</p>
+    
+          {% if course.thumbnail %}
+          <img src="{{ course.thumbnail.url }}" alt="{{ course.name }}"
+               class="crs-image mb-3">
+          {% endif %}
+    
+          <ul class="crs-topic-list text-start ps-3 mb-3">
+            {% for learning in course.learning_set.all %}
+              
+              <li class="crs-topic-item mb-1">{{forloop.counter}}. {{ learning.description }}</li>
+             
+            {% endfor %}
+          </ul>
+    
+          <div class="crs-btn-wrap mt-auto">
+            {% if request.user.is_authenticated %}
+              <a href="/course/check-out/{{ course.slug }}" class="crs-btn">
+                <i class="fas fa-play-circle"></i> Course Content
+              </a>
+            {% else %}
+              <a href="{% url 'login' %}" class="crs-btn">
+                <i class="fas fa-play-circle"></i> Course Content
+              </a>
+            {% endif %}
+          </div>
+        </div>
       </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
+      {% endfor %}
+    </div>
+    
+         
+             
+          
+          </div>
+      
+
+      <!-- Course Eligibility and Requirements -->
+      <div class="info-section">
+        <h3>Course Eligibility and Requirements</h3>
+        <p>Our courses are designed to accommodate a diverse range of learners, including international students. Below are the general eligibility criteria and requirements for each course level:</p>
         <ul>
-          <li>
-            Mathematics: Algebra, Geometry, Statistics, Basic Trigonometry
-          </li>
-          <li>Physics: Mechanics, Electricity, Waves, Energy Concepts</li>
-          <li>
-            Chemistry: Atomic Structure, Chemical Reactions, Periodic Table
-          </li>
-          <li>Biology: Cells, Genetics, Ecosystems, Human Body Systems</li>
-          <li>
-            English Language: Reading Comprehension, Essay Writing, Literary
-            Analysis
-          </li>
+          <li><strong>GCSE Courses:</strong> Suitable for students aged 14+ with basic proficiency in English (IELTS 4.5 or equivalent). No prior qualifications required. Students must have access to a computer and stable internet for online courses.</li>
+          <li><strong>A-Level Courses:</strong> Requires completion of GCSE or equivalent qualifications with a minimum grade of C/4 in relevant subjects. Recommended for students aged 16+. Face-to-face courses require attendance at our UK campus.</li>
+          <li><strong>BSc Courses:</strong> Requires A-Level qualifications or equivalent (e.g., International Baccalaureate) with strong grades in relevant subjects. International students must provide proof of English proficiency (IELTS 6.0 or equivalent). PSW-eligible courses require a UK student visa.</li>
+          <li><strong>MSc Courses:</strong> Requires a bachelor’s degree or equivalent with strong grades in relevant subjects. International students must provide proof of English proficiency (IELTS 6.5 or equivalent). PSW-eligible courses require a UK student visa.</li>
+          <li><strong>Additional Requirements:</strong> All students must submit an application form, identification documents, and, for international students, proof of visa status where applicable. Specific courses may have additional subject-specific prerequisites.</li>
         </ul>
-        <h4>Additional Resources</h4>
+      </div>
+      <!-- How Online Courses Work -->
+      <div class="info-section">
+        <h3>How Online Courses Work</h3>
+        <p>Our online courses are designed to provide flexibility and accessibility for students worldwide, delivering high-quality education through our advanced learning platform. Here's how they work:</p>
         <ul>
-          <li>
-            Textbooks: GCSE Foundation Maths, Physics, Chemistry, Biology
-          </li>
-          <li>Practice Exams: Past Papers and Mock Tests</li>
-          <li>Online Tools: Khan Academy Tutorials, BBC Bitesize</li>
+          <li><strong>Learning Platform:</strong> Access course materials, live lectures, and recorded sessions through our secure online portal, available 24/7.</li>
+          <li><strong>Interactive Content:</strong> Engage with interactive modules, quizzes, and assignments designed to reinforce learning and track progress.</li>
+          <li><strong>Live and Recorded Sessions:</strong> Attend live virtual classes with experienced instructors or watch recordings at your convenience to accommodate different time zones.</li>
+          <li><strong>Support and Interaction:</strong> Communicate with instructors and peers via discussion forums, live Q&A sessions, and one-on-one consultations.</li>
+          <li><strong>Assessments and Feedback:</strong> Complete regular assessments, including online exams and coursework, with detailed feedback to support your academic growth.</li>
+          <li><strong>Technical Requirements:</strong> A reliable internet connection, a computer or tablet, and basic software (e.g., a web browser and PDF reader) are required. Technical support is available 24/7.</li>
+          <li><strong>Progress Tracking:</strong> Monitor your progress through a personalized dashboard, ensuring you stay on track to meet course deadlines and objectives.</li>
         </ul>
+        <p>Our online courses are structured to provide the same rigorous academic standards as our face-to-face programs, ensuring you achieve your qualifications with flexibility and support.</p>
+      </div>
+      <!-- Why UK Education -->
+      <div class="info-section">
+        <h3>Why Choose UK Education Over Indian Education?</h3>
+        <p>Choosing UK education at EdVantage Learning An International Academy offers distinct advantages over traditional Indian education systems, providing a transformative academic and career-building experience:</p>
+        <ul>
+          <li><strong>Globally Recognized Qualifications:</strong> UK qualifications like GCSE, A-Level, BSc, and MSc are internationally respected, offering better recognition and opportunities in global job markets compared to many Indian qualifications, which may face credibility challenges abroad.</li>
+          <li><strong>Advanced Teaching Methods:</strong> UK education emphasizes critical thinking, practical application, and research-driven learning, contrasting with the often rote-based, exam-focused Indian system, fostering creativity and problem-solving skills.</li>
+          <li><strong>Post-Study Work (PSW) Visa:</strong> On-campus undergraduate and postgraduate programs offer a 2-year PSW visa, enabling international students to gain valuable UK work experience, an opportunity not typically available in India.</li>
+          <li><strong>EdVantage Learning Options:</strong> Our online GCSE and A-Level courses provide unmatched flexibility, allowing students to study at their own pace, unlike the rigid schedules of Indian schooling, which often limits personalization.</li>
+          <li><strong>World-Class Faculty and Resources:</strong> Access to experienced UK instructors and cutting-edge resources, including virtual labs and libraries, surpasses the outdated infrastructure often found in Indian institutions.</li>
+          <li><strong>Career and Industry Alignment:</strong> UK courses are designed with industry input, ensuring relevance to global market needs, while Indian curricula can sometimes lag behind in addressing current industry demands.</li>
+        </ul>
+        <p>By choosing UK education with us, you gain a competitive edge with qualifications that open doors to global opportunities, enhanced by practical experience and EdVantage learning tailored to your needs.</p>
+      </div>
+      <!-- Filter Section -->
+  </section>
+
+  <!-- Chatbot Button -->
+  <div class="chatbot-btn" data-bs-toggle="modal" data-bs-target="#chatbotModal">
+    <i class="fas fa-comment-dots"></i>
+    <!-- Help Popup -->
+    <div class="help-popup" id="helpPopup">
+      <h5>Need help?</h5>
+      <p>Our Course Advisor Chatbot can guide you to the perfect course!</p>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatbotModal" onclick="removeHelpPopup(false)">Yes, let's chat!</button>
+      <button class="btn btn-secondary" onclick="removeHelpPopup(true)">No, thanks</button>
+    </div>
+  </div>
+
+  <!-- Chatbot Modal -->
+  <div class="modal fade chatbot-modal" id="chatbotModal" tabindex="-1" aria-labelledby="chatbotModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="chatbotModalLabel">Course Advisor Chatbot</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="chatbot-messages" id="chatbotMessages"></div>
+          <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your response..." class="form-control">
+            <button onclick="handleChatbotSubmit()">Send</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="course-section">
-    <h3 class="level-header">AS Level (11th) Pathways</h3>
-    <div class="course-card" data-video-id="t_8x0J8e-Dg">
-      <h3>Engineering</h3>
-      <p class="course-description">
-        Focus on technical skills for future engineers.
-      </p>
-      <ul>
-        <li>1. Mathematics</li>
-        <li>2. Physics</li>
-        <li>3. Chemistry</li>
-        <li>4. Further Mathematics</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Engineering Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>
-            Mathematics: Calculus, Linear Algebra, Differential Equations
-          </li>
-          <li>Physics: Mechanics, Electromagnetism, Thermodynamics</li>
-          <li>
-            Chemistry: Organic Chemistry, Inorganic Chemistry, Chemical
-            Kinetics
-          </li>
-          <li>
-            Further Mathematics: Advanced Calculus, Matrices, Complex
-            Numbers
-          </li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>
-            Textbooks: AS Level Engineering Maths, Physics for Engineers
-          </li>
-          <li>Projects: Simple Circuit Design, Structural Analysis</li>
-          <li>Online Tools: MIT OpenCourseWare, Engineering Simulations</li>
-        </ul>
-      </div>
-    </div>
-    <div class="course-card" data-video-id="v8F5X0gZ0U8">
-      <h3>Medicine</h3>
-      <p class="course-description">
-        Preparation for a career in healthcare and medical sciences.
-      </p>
-      <ul>
-        <li>1. Mathematics</li>
-        <li>2. Physics</li>
-        <li>3. Chemistry</li>
-        <li>4. Biology</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Medicine Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Mathematics: Statistics, Probability, Data Analysis</li>
-          <li>Physics: Human Physiology, Medical Imaging, Radiation</li>
-          <li>Chemistry: Biochemistry, Organic Compounds, Pharmacology</li>
-          <li>Biology: Human Anatomy, Genetics, Microbiology</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: AS Biology, Chemistry for Medicine</li>
-          <li>Case Studies: Disease Pathology, Patient Care Scenarios</li>
-          <li>Online Tools: Medscape, PubMed Research Articles</li>
-        </ul>
-      </div>
-    </div>
-    <div class="course-card" data-video-id="s4A3X0gY0U9">
-      <h3>Commerce</h3>
-      <p class="course-description">
-        Develop skills for business and financial careers.
-      </p>
-      <ul>
-        <li>1. Mathematics</li>
-        <li>2. Economics</li>
-        <li>3. Further Mathematics</li>
-        <li>4. Accounting</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Commerce Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Mathematics: Financial Mathematics, Probability</li>
-          <li>
-            Economics: Microeconomics, Macroeconomics, Market Structures
-          </li>
-          <li>Further Mathematics: Statistics, Financial Modeling</li>
-          <li>Accounting: Balance Sheets, Income Statements, Auditing</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: AS Economics, Principles of Accounting</li>
-          <li>Case Studies: Business Case Analysis</li>
-          <li>Online Tools: Investopedia, Financial Times</li>
-        </ul>
-      </div>
-    </div>
-    <div class="course-card" data-video-id="r6B2Z0hW0V7">
-      <h3>Arts</h3>
-      <p class="course-description">
-        Explore humanities and social sciences for creative careers.
-      </p>
-      <ul>
-        <li>1. Global Perspectives</li>
-        <li>2. Psychology</li>
-        <li>3. Sociology</li>
-        <li>4. Economics</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Arts Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Global Perspectives: Current Issues, Global Challenges</li>
-          <li>Psychology: Behavioral Studies, Cognitive Processes</li>
-          <li>Sociology: Social Structures, Cultural Analysis</li>
-          <li>Economics: Economic Theories, Policy Analysis</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: AS Sociology, Psychology Basics</li>
-          <li>Projects: Social Research, Essay Writing</li>
-          <li>Online Tools: TED Talks, JSTOR Articles</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <!-- Bootstrap JS with Fallback -->
+  <script>
+    const levelFilter = document.getElementById("crs-filter-level");
+  const modeFilter = document.getElementById("crs-filter-mode");
+  const pswFilter = document.getElementById("crs-filter-psw");
+  const crsItems = document.querySelectorAll(".crs-item");
 
-  <div class="course-section">
-    <h3 class="level-header">A Level (12th) Pathways</h3>
-    <div class="course-card" data-video-id="u7C3Y1iX1W8">
-      <h3>Engineering</h3>
-      <p class="course-description">
-        Advanced technical training for engineering professions.
-      </p>
-      <ul>
-        <li>1. Mathematics</li>
-        <li>2. Physics</li>
-        <li>3. Chemistry</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Engineering A Level Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Mathematics: Differential Equations, Vector Calculus</li>
-          <li>Physics: Advanced Mechanics, Electrodynamics</li>
-          <li>Chemistry: Industrial Chemistry, Materials Science</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: A Level Engineering Physics</li>
-          <li>Projects: Engineering Design Challenges</li>
-          <li>Online Tools: AutoCAD Tutorials, IEEE Resources</li>
-        </ul>
-      </div>
-    </div>
-    <div class="course-card" data-video-id="w9D4Z2jY2X9">
-      <h3>Medicine</h3>
-      <p class="course-description">
-        In-depth study for medical school preparation.
-      </p>
-      <ul>
-        <li>1. Physics</li>
-        <li>2. Chemistry</li>
-        <li>3. Biology</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Medicine A Level Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Physics: Medical Imaging, Biophysics</li>
-          <li>Chemistry: Pharmacology, Organic Synthesis</li>
-          <li>Biology: Advanced Genetics, Immunology</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: A Level Biology, Medical Chemistry</li>
-          <li>Case Studies: Clinical Case Reviews</li>
-          <li>Online Tools: Mayo Clinic Resources, BMJ Learning</li>
-        </ul>
-      </div>
-    </div>
-    <div class="course-card" data-video-id="x0E5A3kZ3Y0">
-      <h3>Commerce</h3>
-      <p class="course-description">
-        Specialized training for business and finance roles.
-      </p>
-      <ul>
-        <li>1. Mathematics</li>
-        <li>2. Economics</li>
-        <li>3. Further Mathematics</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Commerce A Level Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Mathematics: Investment Analysis, Risk Management</li>
-          <li>Economics: Global Economy, Economic Policy</li>
-          <li>Further Mathematics: Econometrics, Time Series</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: A Level Economics, Financial Mathematics</li>
-          <li>Case Studies: Market Analysis Reports</li>
-          <li>Online Tools: Bloomberg Terminal, Economist Articles</li>
-        </ul>
-      </div>
-    </div>
-    <div class="course-card" data-video-id="y1F6B4lA4Z1">
-      <h3>Arts</h3>
-      <p class="course-description">
-        Deep dive into humanities for artistic careers.
-      </p>
-      <ul>
-        <li>1. Psychology</li>
-        <li>2. Sociology</li>
-        <li>3. Economics</li>
-      </ul>
-      <div class="button-group">
-        <button
-          class="play-button"
-          data-bs-toggle="modal"
-          data-bs-target="#pupilFormModal"
-          aria-label="Play Arts A Level Course"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="content-button">Course Content</button>
-      </div>
-      <div class="course-content">
-        <h4>Syllabus</h4>
-        <ul>
-          <li>Psychology: Cognitive Behavior, Neuropsychology</li>
-          <li>Sociology: Cultural Studies, Social Movements</li>
-          <li>Economics: Development Economics, Behavioral Economics</li>
-        </ul>
-        <h4>Additional Resources</h4>
-        <ul>
-          <li>Textbooks: A Level Psychology, Sociology</li>
-          <li>Projects: Cultural Research Papers</li>
-          <li>Online Tools: APA Resources, Sociological Review</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+  function filterCourses() {
+    const level = levelFilter?.value || "all";
+    const mode = modeFilter?.value || "all";
+    const psw = pswFilter?.value || "all";
 
-<!-- Modal for Pupil Details and Video Preview -->
-<div
-  class="modal fade"
-  id="pupilFormModal"
-  tabindex="-1"
-  aria-labelledby="pupilFormModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="pupilFormModalLabel">
-          Pupil Registration
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form id="pupilForm">
-          <div class="mb-3">
-            <label for="pupilName" class="form-label">Full Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="pupilName"
-              required
-              aria-required="true"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="pupilEmail" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="pupilEmail"
-              required
-              aria-required="true"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="pupilMobile" class="form-label"
-              >Mobile Number</label
-            >
-            <input
-              type="tel"
-              class="form-control"
-              id="pupilMobile"
-              required
-              aria-required="true"
-              placeholder="+44 123 456 7890"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="careerGoal" class="form-label">Career Goal</label>
-            <textarea
-              class="form-control"
-              id="careerGoal"
-              rows="3"
-              required
-              aria-required="true"
-              placeholder="Describe your career aspirations"
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">
-            Submit
-          </button>
-        </form>
-        <div class="video-preview" id="videoPreview"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Bootstrap JS -->
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-  crossorigin="anonymous"
-></script>
-<script>
-  // Initialize Particles.js
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: 80, density: { enable: true, value_area: 800 } },
-      color: { value: ["#71ab0c", "#71ab0c", "#FFFFFF"] },
-      shape: { type: "circle" },
-      opacity: { value: 0.5, random: true },
-      size: { value: 3, random: true },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: "#FFFFFF",
-        opacity: 0.4,
-        width: 1,
-      },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: "none",
-        random: false,
-        straight: false,
-        out_mode: "out",
-        bounce: false,
-      },
-    },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" },
-        resize: true,
-      },
-      modes: {
-        repulse: { distance: 100, duration: 0.4 },
-        push: { particles_nb: 4 },
-      },
-    },
-    retina_detect: true,
-  });
-
-  // Sticky Navbar Effect
-  window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
-
-  // Dark Mode Toggle
-  const darkModeToggle = document.createElement("button");
-  darkModeToggle.className = "btn btn-primary";
-  darkModeToggle.style.position = "fixed";
-  darkModeToggle.style.top = "20px";
-  darkModeToggle.style.right = "20px";
-  darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  darkModeToggle.setAttribute("aria-label", "Toggle Dark Mode");
-  document.body.appendChild(darkModeToggle);
-
-  darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    const icon = darkModeToggle.querySelector("i");
-    icon.classList.toggle("fa-moon");
-    icon.classList.toggle("fa-sun");
-    localStorage.setItem(
-      "darkMode",
-      document.body.classList.contains("dark-mode") ? "enabled" : "disabled"
-    );
-  });
-
-  if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    darkModeToggle
-      .querySelector("i")
-      .classList.replace("fa-moon", "fa-sun");
+    crsItems.forEach(item => {
+      const matchLevel = (level === "all" || item.dataset.level === level);
+      const matchMode = (mode === "all" || item.dataset.mode === mode);
+      const matchPSW = (psw === "all" || item.dataset.psw === psw);
+      item.style.display = (matchLevel && matchMode && matchPSW) ? "block" : "none";
+    });
   }
 
-  // GSAP Animations with ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.from(".level-header", {
-    opacity: 0,
-    y: 50,
-    duration: 1.5,
-    ease: "power3.out",
-    delay: 0.5,
+  [levelFilter, modeFilter, pswFilter].forEach(select => {
+    if (select) select.addEventListener("change", filterCourses);
   });
-  gsap.from(".course-card", {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    stagger: 0.2,
-    scrollTrigger: { trigger: ".course-section", start: "top 80%" },
-  });
-
-  // Course Content Toggle
-  document.querySelectorAll(".content-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      const content = button.nextElementSibling;
-      content.classList.toggle("active");
-      if (content.classList.contains("active")) {
-        button.textContent = "Hide Content";
-      } else {
-        button.textContent = "Course Content";
-      }
-    });
-  });
-
-  // Pupil Form Submission with Validation and Video Preview
-  document.getElementById("pupilForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = document.getElementById("pupilName").value;
-    const email = document.getElementById("pupilEmail").value;
-    const mobile = document.getElementById("pupilMobile").value;
-    const careerGoal = document.getElementById("careerGoal").value;
-    const mobileRegex = /^\+?[1-9]\d{1,14}$/;
-
-    if (!mobileRegex.test(mobile)) {
-      alert("Please enter a valid mobile number (e.g., +441234567890).");
-      return;
+    // Fallback for Bootstrap JS
+    if (typeof bootstrap === 'undefined') {
+      console.warn('Bootstrap JS failed to load from CDN. Attempting to load local fallback.');
+      document.write('<script src="assets/js/bootstrap.bundle.min.js"><\/script>');
     }
+   </script>
+  <script src="{% static 'assets/js/courses.js' %}"></script>
 
-    // Get the video ID from the clicked course card
-    const button =
-      document.querySelector('[data-bs-target="#pupilFormModal"].show') ||
-      document.querySelector('.play-button[aria-expanded="true"]');
-    const courseCard = button
-      ? button.closest(".course-card")
-      : document.querySelector(".course-card");
-    const videoId = courseCard
-      ? courseCard.getAttribute("data-video-id")
-      : "dQw4w9WgXcQ"; // Default to a placeholder if no card is found
-
-    // Hide the form and show the video
-    document.getElementById("pupilForm").style.display = "none";
-    const videoPreview = document.getElementById("videoPreview");
-    videoPreview.innerHTML = `
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `;
-    alert(
-      `Thank you, ${name}! Your details (Email: ${email}, Mobile: ${mobile}, Career Goal: ${careerGoal}) have been submitted. Watch the course preview below.`
-    );
-
-    // Add a close button for the video
-    const closeButton = document.createElement("button");
-    closeButton.className = "btn btn-primary w-100 mt-3";
-    closeButton.textContent = "Close Video";
-    closeButton.addEventListener("click", () => {
-      videoPreview.innerHTML = "";
-      document.getElementById("pupilForm").style.display = "block";
-      const modal = bootstrap.Modal.getInstance(
-        document.getElementById("pupilFormModal")
-      );
-      modal.hide();
-    });
-    videoPreview.appendChild(closeButton);
-  });
-</script>
-
+   
 {% endblock %}

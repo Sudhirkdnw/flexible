@@ -2,6 +2,9 @@ from django.shortcuts import render , redirect
 from course.models import Course , Video , Payment , UserCourse
 from django.shortcuts import HttpResponse
 # Create your views here.
+from django.template.loader import render_to_string
+from django.conf import settings    
+from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from flexible.settings import *
@@ -22,8 +25,10 @@ def checkout(request , slug):
     try:
         user_course = UserCourse.objects.get(user = user  , course = course)
         error = "You are Already Enrolled in this Course"
-    except:
+        return redirect('my-courses')
+    except UserCourse.DoesNotExist:
         pass
+
     amount=None
     if error is None : 
         amount =  int((course.price - ( course.price * course.discount * 0.01 )) * 100)
@@ -49,6 +54,7 @@ def checkout(request , slug):
                 'currency' : currency
                 }
             )
+            print(order)
 
             payment = Payment()
             payment.user  = user
@@ -67,34 +73,86 @@ def checkout(request , slug):
     }
     return  render(request , template_name="courses/check_out.html" , context=context )    
 
-@login_required(login_url='/core/login')
+# @login_required(login_url='/core/login')
+# @csrf_exempt
+# def verifyPayment(request):
+#     if request.method == "POST":
+#         data = request.POST
+#         context = {}
+#         print(data)
+#         try: 
+#             client.utility.verify_payment_signature(data)
+#             razorpay_order_id = data['razorpay_order_id']
+#             razorpay_payment_id = data['razorpay_payment_id']
+
+#             payment = Payment.objects.get(order_id = razorpay_order_id)
+#             payment.payment_id  = razorpay_payment_id
+#             payment.status =  True
+            
+#             try:
+#                 user_course = UserCourse(user=payment.user, course=payment.course)
+#             except UserCourse.DoesNotExist:
+#                 user_course = UserCourse(user=payment.user, course=payment.course)
+#                 user_course.save()
+#             print(user_course)
+#             payment.user_course = user_course
+#             payment.save()
+
+#             return redirect('my-courses')   
+  
+#         except:
+#             return HttpResponse("Invalid Payment Details")        
 @csrf_exempt
 def verifyPayment(request):
     if request.method == "POST":
         data = request.POST
-        context = {}
         print(data)
         try:
-            client.utility.verify_payment_signature(data)
-            razorpay_order_id = data['razorpay_order_id']
-            razorpay_payment_id = data['razorpay_payment_id']
+            params_dict = {
+                'razorpay_order_id': data.get('razorpay_order_id'),
+                'razorpay_payment_id': data.get('razorpay_payment_id'),
+                'razorpay_signature': data.get('razorpay_signature')
+            }
 
-            payment = Payment.objects.get(order_id = razorpay_order_id)
-            payment.payment_id  = razorpay_payment_id
-            payment.status =  True
-            
-            userCourse = UserCourse(user = payment.user , course = payment.course)
-            userCourse.save()
+            client.utility.verify_payment_signature(params_dict)
 
-            print("UserCourse" ,  userCourse.id)
+            razorpay_order_id = params_dict['razorpay_order_id']
+            razorpay_payment_id = params_dict['razorpay_payment_id']
 
-            payment.user_course = userCourse
+            payment = Payment.objects.get(order_id=razorpay_order_id)
+            payment.payment_id = razorpay_payment_id
+            payment.status = True
+
+            user_course, created = UserCourse.objects.get_or_create(
+                user=payment.user, course=payment.course
+            )
+            print(user_course)
+            payment.user_course = user_course
             payment.save()
+            
+            subject = "Payment Successful - Course Enrollment Confirmed"
+            message = render_to_string("emails/payment_success.html", {
+                'user': payment.user,
+                'course': payment.course,
+                'payment': payment,
+            })
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [payment.user.email],
+                fail_silently=False,
+            )
 
-            return redirect('my-courses')   
-  
-        except:
+            return redirect('payment-confirmation')
+
+        except Exception as e:
+            print("Payment verification error:", e)
             return HttpResponse("Invalid Payment Details")
-        
-        
+    else:
+        return HttpResponse("Only POST method is allowed")
+    
  
+@login_required(login_url='core/login')
+def payment_confirmation(request):
+    return render(request, "courses/payment_confirmation.html")

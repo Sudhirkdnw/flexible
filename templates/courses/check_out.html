@@ -3,10 +3,7 @@
 <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
 {% endblock %} {%block content%}
 
-<div class="container">
-  <br />
-
-  <br />
+<div class="container" style="margin-top: 10%">
   <div class="row">
     <div class="col mr-auto">
       <div class="card ml-auto" style="width: 18rem">
@@ -59,7 +56,7 @@
 <script>
   var options = {
     key: "rzp_test_ROwZnTSdnjWUTd", // Enter the Key ID generated from the Dashboard
-    name: "Sudhir kumar",
+    name: "{{course.name}}",
     description: "Payment For {{course.name}}",
     image: "https://png.pngtree.com/element_pic/00/16/07/115783931601b5c.jpg",
     order_id: "{{order.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1

@@ -17,6 +17,8 @@ class MyCoursesList(ListView):
 
 def coursePage(request , slug):
     course = Course.objects.get(slug  = slug)
+    learnings = course.learning_set.all()
+    
     serial_number  = request.GET.get('lecture')
     videos = course.video_set.all().order_by("serial_number")
 
@@ -40,7 +42,8 @@ def coursePage(request , slug):
     context = {
         "course" : course , 
         "video" : video , 
-        'videos':videos
+        'videos':videos,
+        'learnings':learnings,
     }
     return  render(request , template_name="courses/course_page.html" , context=context )    
     

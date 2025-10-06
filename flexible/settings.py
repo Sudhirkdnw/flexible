@@ -149,3 +149,12 @@ KEY_SECRET  = "0lbfSg1c1H9o5cLFUk4YNbgn"
 
 # KEY_ID  = "rzp_test_26WYBJdjNWA64A"
 # KEY_SECRET  = "0AORmLYrdmWn4Pxvs0ai3EuH"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'Shreyankapatil.in@gmail.com'
+EMAIL_HOST_PASSWORD = 'npil zuse eemz vtde'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

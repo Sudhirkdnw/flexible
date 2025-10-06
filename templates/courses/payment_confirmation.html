@@ -1,0 +1,21 @@
+{% extends '../base.html' %} 
+{% load static %} 
+{% block title %}Payment Confirmation{%endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}" />
+
+.Paymentconfirmation{
+
+}
+{% endblock %}
+{% block content %}
+<div class="Paymentconfirmation" style="margin-top:10%">
+<div class="container  py-5">
+  <h2 class="text-success fw-bold">🎉 Payment Successful!</h2>
+  <p>Your enrollment has been confirmed. You can now access your course.</p>
+  <a href="{% url 'my-courses' %}" class="btn btn-primary mt-3"
+    >Go to My Courses</a
+  >
+</div>
+</div>
+{% endblock %}
