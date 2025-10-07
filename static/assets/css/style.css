@@ -189,7 +189,7 @@ img:not([src]) {
 /* Hero Section (from previous CSS, assumed to be part of a different page/component) */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 75vh;
   overflow: hidden;
   background: var(--gradient-bg);
   color: var(--white);
@@ -1460,5 +1460,3 @@ footer {
   width: 100%;
   height: 30vh;
 }
-
-

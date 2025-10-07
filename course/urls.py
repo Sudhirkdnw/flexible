@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from core.views import dashboard
 from django.conf import settings
 urlpatterns = [
-    path('', HomePageView.as_view() , name = 'home'),
+  #  path('', HomePageView.as_view() , name = 'home'),
     path('my-courses', MyCoursesList.as_view() , name = 'my-courses'),
     path('course/<str:slug>', coursePage , name = 'coursepage'),
     path('check-out/<str:slug>', checkout , name = 'check-out'),
