@@ -21,7 +21,7 @@
 #header h1:before {
     content: "";
     display: inline-block;
-    background-image: url('/static/assets/image/ladmin_ogo.png'); /* your logo path */
+    background-image: url('/static/assets/image/adminlogo.jpg'); /* your logo path */
     background-size: contain;
     width: 120px;
     height: 60px;
