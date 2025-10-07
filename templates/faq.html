@@ -1,335 +1,157 @@
-{% extends 'base.html' %} {%load static%} {% block title %}Home -
-EdVantage{%endblock %} {% block extra_css %}
-<link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
-{% endblock %} {% block content %}  
+{% extends 'base.html' %}
+{% load static %}
 
-<!-- FAQ Section -->
-<section class="faq-section" id="faq">
-  <div id="particles-js"></div>
-  <div class="container">
-    <div class="faq-container animate__animated animate__fadeInDown">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item animate__animated animate__fadeInUp">
-        <h4>What are the benefits of studying in the UK over India?</h4>
-        <p>
-          Better facilities, more esteemed teaching faculties, and degrees that
-          count for more in Western society are just three benefits of studying
-          in the UK.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-1s">
-        <h4>What is the equivalent GCSE level in India?</h4>
-        <p>
-          India has two national boards (CBSE and ISC) and several regional
-          boards, all of which conduct GCSE equivalent examinations at the end
-          of Year 10.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-2s">
-        <h4>Is an Indian degree valid in the UK?</h4>
-        <p>
-          Following a historic agreement between the UK and Indian governments,
-          both countries will now recognise undergraduate and postgraduate
-          degrees. This means that an Indian student with a degree from one of
-          the Indian colleges will now be eligible to pursue higher studies in
-          the UK and vice versa.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-3s">
-        <h4>Is UK education the best in the world?</h4>
-        <p>
-          The UK has regularly been named the best country in the world for
-          education and has long been considered one of the best nations for
-          obtaining a world-class education and degree.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-4s">
-        <h4>What is the UK higher education system like?</h4>
-        <p>
-          Compared to other global countries with regional differences and can
-          be confusing to overseas students, higher education in the UK is
-          simple to understand in terms of structure and grading. At every
-          stage, international students are welcomed and made to feel at home.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-5s">
-        <h4>How is the UK for Indian students?</h4>
-        <p>
-          Indian students are made to feel at home in the UK from the moment
-          they step foot here. The UK is home to many Indian communities, and
-          various clubs and societies at all UK institutions will ensure you
-          make friends quickly.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-6s">
-        <h4>Why are Indian students choosing to study in the UK?</h4>
-        <p>
-          Great career prospects, fantastic teaching and the post-study work
-          visa are just three reasons why so many Indian students choose to
-          study in the UK.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-7s">
-        <h4>How do we compare UK universities and their courses?</h4>
-        <p>
-          Students can compare universities and courses in the UK by checking
-          out the latest UK University Rankings and finding courses via our
-          in-depth course search.
-        </p>
-      </div>
-      <div class="faq-item animate__animated animate__fadeInUp delay-8s">
-        <h3>The Differences between UK and Indian Education</h3>
-        <h4>Education in India</h4>
-        <h4>SSC</h4>
-        <p>
-          The Secondary School Certificate is a public examination taken by
-          students after completing at least ten years of schooling in the
-          following subjects: languages (English & 1 Regional Language), Social
-          Studies (SST), Mathematics, and Science (Physics, Chemistry, and
-          Biology).
-        </p>
-        <p>
-          A new 9-point grading system has been introduced for this level: A1,
-          A2, B1, B2, C1, C2, D, E1, E2.
-        </p>
-        <h4>HSC</h4>
-        <p>
-          The Higher Secondary Certificate is a two-year study in science,
-          commerce, and arts at a school. Results are awarded in percentages as
-          below:
-        </p>
-        <ul>
-          <li>Distinction – 75%+</li>
-          <li>First Class – 60%</li>
-          <li>Second Class – 50%</li>
-          <li>Pass – 33%</li>
-        </ul>
-        <h4>Bachelor’s Degree in India</h4>
-        <p>
-          This involves 3/4 years of study in a university with specialisation
-          in an area like Commerce and Economics, Management, Computing, Arts,
-          Engineering, or Science.
-        </p>
-        <p>Degrees are awarded as follows:</p>
-        <ul>
-          <li>Distinction</li>
-          <li>First Class</li>
-          <li>Second Class</li>
-          <li>Pass</li>
-        </ul>
-        <h4>Education in the UK</h4>
-        <h4>GCSE</h4>
-        <p>
-          General Certificate of Secondary Education: Level 2 of the NQF
-          Framework for GCSEs grades A* – C. Students can take up to 9-12 GCSEs,
-          including English and Maths, at A*- C.
-        </p>
-        <p>
-          GCSEs are available in over 40 academic and nine ‘applied’ subjects.
-          The applied subjects are focused on wider work areas, such as
-          engineering. When you take GCSEs, you can achieve pass grades from A*
-          to G. If you don’t achieve the minimum pass mark to get a grade G,
-          then a U grade is awarded, which means ‘unclassified’.
-        </p>
-        <p>Higher tier (difficult level) exams lead to grades A* – D</p>
-        <p>Foundation tier exams lead to grades C – G</p>
-        <h4>A-Levels</h4>
-        <p>
-          A-levels comprise the AS (advanced subsidiary) level and the A2. Each
-          year’s grade makes up 50 per cent of the overall A-level grade. This
-          forms level 3 of the NQF qualifications framework.
-        </p>
-        <p>
-          <strong>Year 1: AS-Level</strong>—Students can study the AS-Level as
-          either a free-standing qualification or the first half of the full
-          A-level.
-        </p>
-        <p>
-          <strong>Year 2: A2</strong>—In year two of study, you take the A2 –
-          this is not a separate qualification, but the second half of the
-          A-Level. The A2 is designed to deepen the knowledge you gained during
-          the AS Level.
-        </p>
-        <p>
-          Colleges of further education and sixth-form colleges also offer
-          academic, technical and vocational courses for people over 16.
-        </p>
-        <p>
-          Students can also choose to take the International Baccalaureate (IB)
-          Diploma. This programme is an internationally recognised qualification
-          for students aged 16 to 19. It is level 3 of the NQF qualifications
-          framework and is focused on studying various subjects, including
-          languages, science, maths, history, arts and geography.
-        </p>
-        <h4>Undergraduate UK Study</h4>
-        <p>
-          <strong>Universities and Colleges Admission Service (UCAS)</strong>
-        </p>
-        <p>
-          UCAS manages applications to higher education courses in the UK and
-          processes more than two million applications for full-time
-          undergraduate courses yearly. StudyIn uses UCAS for undergraduate
-          applications on behalf of Indian students.
-        </p>
-        <p><strong>Foundation Study in the UK</strong></p>
-        <p>
-          Students can opt to study a Foundation Degree (Level 5 of the FHEQ /
-          NQF qualifications framework), a university-level qualification
-          involving the first two years of an honours degree. Upon obtaining a
-          Foundation Degree, students may ‘top-up’ their qualification to an
-          honours degree.
-        </p>
-        <p>
-          Undergraduate studies in the UK take three years to complete in most
-          cases, leading to a qualification such as a Bachelor of Arts (BA) or a
-          Bachelor of Science (BSc) – level 6 of NQF/ FHEQ. You will need at
-          least four years of study if you choose a sandwich programme involving
-          practical work accompanied by coursework.
-        </p>
-        <p>Grades and their equivalent percentages:</p>
-        <table class="faq-table">
-          <thead>
-            <tr>
-              <th scope="col">Grade</th>
-              <th scope="col">Equivalent Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>First</td>
-              <td>70%+</td>
-            </tr>
-            <tr>
-              <td>Upper-second (2:1)</td>
-              <td>60–69%</td>
-            </tr>
-            <tr>
-              <td>Lower-second (2:2)</td>
-              <td>50–59%</td>
-            </tr>
-            <tr>
-              <td>Third</td>
-              <td>40–49%</td>
-            </tr>
-            <tr>
-              <td>Pass</td>
-              <td>35–40%</td>
-            </tr>
-            <tr>
-              <td>Fail</td>
-              <td>Below 35%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          <em
-            >A third or above means you receive a bachelor’s degree with
-            honours.</em
-          >
-        </p>
-        <h4>Undergraduate Study in India</h4>
-        <p>
-          After completing 12 years of education, students can apply for
-          undergraduate degrees at universities or colleges. Undergraduate study
-          in India typically consists of a 3-year Bachelor’s degree and a 4-year
-          programme for a professional degree, such as a Bachelor of Engineering
-          (B.E) or a Bachelor of Medicine or a Bachelor of Surgery (MBBS).
-        </p>
-        <p>
-          Admission is based on the student’s performance in their final
-          secondary school examinations, such as the Higher Secondary
-          Certificate (HSC) or the Indian School Certificate (ISC). Some courses
-          may have additional entrance exams or require minimum grades in
-          specific subjects.
-        </p>
-        <h4>Postgraduate UK Study</h4>
-        <p><strong>Master’s Study</strong></p>
-        <p>
-          After completing an undergraduate degree, students can study for a
-          postgraduate diploma, postgraduate certificate or the more traditional
-          Master’s degree. Different types of postgraduate degrees include:
-        </p>
-        <ul>
-          <li>MA: Master of Arts</li>
-          <li>MSc: Master of Science</li>
-          <li>MBA: Master of Business Administration</li>
-          <li>LLM: Master of Laws</li>
-          <li>MEd: Master of Education</li>
-          <li>MPhil: Master of Philosophy</li>
-          <li>MRes: Master of Research</li>
-        </ul>
-        <p>Grades are normally awarded as follows:</p>
-        <ul>
-          <li>Distinction</li>
-          <li>Merit</li>
-          <li>Pass</li>
-          <li>Fail</li>
-        </ul>
-        <p><strong>Doctorates/PhD</strong></p>
-        <p>
-          A doctorate qualification or Research degree (Level 8 of the NQF/ FHEQ
-          qualifications framework) allows you to undertake an original piece of
-          research. Completing a PhD usually takes at least three years of
-          full-time study. Doctorates are normally awarded as either a pass or
-          fail, sometimes with distinction.
-        </p>
-        <h4>Postgraduate Study in India</h4>
-        <p><strong>Master’s Study</strong></p>
-        <p>
-          Postgraduate study in India typically consists of a two-year Master’s
-          degree and a three-year professional degree, such as a Master of
-          Business Administration (MBA) or a Master of Technology (M.Tech).
-        </p>
-        <p>
-          To be eligible for postgraduate study, students must have completed an
-          undergraduate degree from a recognised university or college in India.
-          Admissions to postgraduate courses is based on the student’s
-          performance in their undergraduate degree and their scores on entrance
-          exams like the Graduate Aptitude Test in Engineering (GATE) for
-          technical courses or the Common Admission Test (CAT) for management
-          programmes.
-        </p>
-        <p><strong>Doctorates/PhD</strong></p>
-        <p>
-          A PhD in India typically takes 3-5 years to complete, depending on the
-          field of study and the candidate’s research progress. To be eligible
-          for a PhD in India, a student must have completed a Master’s degree
-          from a recognised university or college. PhD students are typically
-          required to submit a thesis or dissertation representing their
-          original research and making a significant contribution to their field
-          of study.
-        </p>
-        <h4>Education in Scotland</h4>
-        <p>
-          The Scottish Qualifications Authority (SQA) provides syllabuses for
-          years S3-S6 in secondary school. “Standard Grade” courses are taken by
-          students, including studying years S3-S4. These are equivalent to the
-          Indian SSC – 10th STD and the UK’s GCSE levels.
-        </p>
-        <p>
-          Grades range from 1 (highest) to 7 (lowest). Grade 3 and above is
-          considered a pass.
-        </p>
-        <p>
-          Years S5 and S6 are 1-year courses, harder than GCSEs but easier than
-          A-Levels. Therefore, some feel these courses are insufficient training
-          for university, so Scottish university degrees generally last for one
-          more year than English universities.
-        </p>
-        <p>
-          Grades range from A (highest) to C, which is a pass, and D, which is a
-          near pass.
-        </p>
-        <p>
-          The Advanced Higher is taken by the ablest S6 students, where students
-          focus on one or two subjects. These papers are graded A-E with credit
-          values similar to A-Level in the UK.
-        </p>
+{% block title %}Home - UK-Style Online School in India{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
+{% block content %}
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div id="particles-js"></div>
+    <div class="container">
+      <div class="faq-container animate_animated animate_fadeInDown">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item animate_animated animate_fadeInUp">
+          <h4>What is the UK-style online school in India?</h4>
+          <p>Our UK-style online school brings the structure and quality of UK education to students in India through a virtual platform, offering a world-class curriculum with live doubt-clearing sessions available anytime.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-1s">
+          <h4>How does the online UK curriculum compare to Indian boards like CBSE or ICSE?</h4>
+          <p>Our online UK curriculum follows the structure of GCSEs and A-Levels, focusing on critical thinking, practical application, and globally recognized qualifications, equivalent to India’s SSC and HSC but with a more flexible and interactive approach.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-2s">
+          <h4>How do live doubt-clearing sessions work?</h4>
+          <p>Students can book live doubt-clearing sessions at any time through our platform, where expert tutors provide personalized guidance to resolve queries and enhance understanding.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-3s">
+          <h4>Are the qualifications from this UK-style school recognized in India and abroad?</h4>
+          <p>Yes, our qualifications, based on the UK’s GCSE and A-Level systems, are globally recognized and equivalent to Indian qualifications like SSC and HSC, enabling students to pursue higher studies in India or internationally.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-4s">
+          <h4>What are the benefits of studying in a UK-style online school?</h4>
+          <p>Students gain access to a globally respected curriculum, interactive online classes, live doubt-clearing sessions, and a flexible learning environment that prepares them for international higher education and careers.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-5s">
+          <h4>How does the online platform support Indian students?</h4>
+          <p>Our platform is designed to make Indian students feel supported with interactive lessons, access to UK-trained tutors, and a community of learners, ensuring a seamless transition to the UK education system.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-6s">
+          <h4>Why choose our UK-style online school over traditional Indian schools?</h4>
+          <p>Our school offers a UK-based curriculum with the convenience of online learning, live doubt-clearing sessions, and a focus on critical thinking and global career opportunities, setting students apart from traditional Indian education systems.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-7s">
+          <h4>How can students enroll and access course materials?</h4>
+          <p>Students can enroll through our website, access course materials on our user-friendly online platform, and schedule live doubt-clearing sessions as needed to support their learning journey.</p>
+        </div>
+        <div class="faq-item animate_animated animate_fadeInUp delay-8s">
+          <h3>The Differences between UK and Indian Education</h3>
+          <h4>Education in India</h4>
+          <h4>SSC</h4>
+          <p>The Secondary School Certificate is a public examination taken by students after completing at least ten years of schooling in the following subjects: languages (English & 1 Regional Language), Social Studies (SST), Mathematics, and Science (Physics, Chemistry, and Biology).</p>
+          <p>A new 9-point grading system has been introduced for this level: A1, A2, B1, B2, C1, C2, D, E1, E2.</p>
+          <h4>HSC</h4>
+          <p>The Higher Secondary Certificate is a two-year study in science, commerce, and arts at a school. Results are awarded in percentages as below:</p>
+          <ul>
+            <li>Distinction – 75%+</li>
+            <li>First Class – 60%</li>
+            <li>Second Class – 50%</li>
+            <li>Pass – 33%</li>
+          </ul>
+          <h4>Bachelor’s Degree in India</h4>
+          <p>This involves 3/4 years of study in a university with specialisation in an area like Commerce and Economics, Management, Computing, Arts, Engineering, or Science.</p>
+          <p>Degrees are awarded as follows:</p>
+          <ul>
+            <li>Distinction</li>
+            <li>First Class</li>
+            <li>Second Class</li>
+            <li>Pass</li>
+          </ul>
+          <h4>Education in the UK (Offered Online)</h4>
+          <h4>GCSE</h4>
+          <p>General Certificate of Secondary Education: Level 2 of the NQF Framework for GCSEs grades A* – C. Students can take up to 9-12 GCSEs, including English and Maths, at A*- C, all delivered through our online platform with live support.</p>
+          <p>GCSEs are available in over 40 academic and nine ‘applied’ subjects. The applied subjects are focused on wider work areas, such as engineering. When you take GCSEs, you can achieve pass grades from A* to G. If you don’t achieve the minimum pass mark to get a grade G, then a U grade is awarded, which means ‘unclassified’.</p>
+          <p>Higher tier (difficult level) exams lead to grades A* – D</p>
+          <p>Foundation tier exams lead to grades C – G</p>
+          <h4>A-Levels</h4>
+          <p>A-levels comprise the AS (advanced subsidiary) level and the A2, delivered online with interactive lessons and live doubt sessions. Each year’s grade makes up 50 per cent of the overall A-level grade. This forms level 3 of the NQF qualifications framework.</p>
+          <p><strong>Year 1: AS-Level</strong>—Students can study the AS-Level as either a free-standing qualification or the first half of the full A-level, with live tutor support.</p>
+          <p><strong>Year 2: A2</strong>—In year two, students take the A2, deepening knowledge gained during the AS Level, supported by online resources and live sessions.</p>
+          <p>Colleges of further education and sixth-form colleges also offer academic, technical, and vocational courses for people over 16, which we provide online.</p>
+          <p>Students can also choose to take the International Baccalaureate (IB) Diploma online, an internationally recognised qualification for students aged 16 to 19, covering subjects like languages, science, maths, history, arts, and geography.</p>
+          <h4>Undergraduate UK Study (Online Pathways)</h4>
+          <p><strong>Universities and Colleges Admission Service (UCAS)</strong></p>
+          <p>UCAS manages applications to higher education courses in the UK. Our online school supports Indian students with UCAS applications for undergraduate studies, ensuring a smooth transition to UK universities.</p>
+          <p><strong>Foundation Study in the UK</strong></p>
+          <p>Students can opt for an online Foundation Degree (Level 5 of the FHEQ / NQF), a university-level qualification covering the first two years of an honours degree, with the option to ‘top-up’ to an honours degree.</p>
+          <p>Undergraduate studies in the UK take three years to complete, leading to qualifications like a Bachelor of Arts (BA) or Bachelor of Science (BSc) – level 6 of NQF/ FHEQ. Sandwich programmes with practical work take four years.</p>
+          <p>Grades and their equivalent percentages:</p>
+          <table class="faq-table">
+            <thead>
+              <tr>
+                <th scope="col">Grade</th>
+                <th scope="col">Equivalent Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>First</td>
+                <td>70%+</td>
+              </tr>
+              <tr>
+                <td>Upper-second (2:1)</td>
+                <td>60–69%</td>
+              </tr>
+              <tr>
+                <td>Lower-second (2:2)</td>
+                <td>50–59%</td>
+              </tr>
+              <tr>
+                <td>Third</td>
+                <td>40–49%</td>
+              </tr>
+              <tr>
+                <td>Pass</td>
+                <td>35–40%</td>
+              </tr>
+              <tr>
+                <td>Fail</td>
+                <td>Below 35%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><em>A third or above means you receive a bachelor’s degree with honours.</em></p>
+          <h4>Undergraduate Study in India</h4>
+          <p>After completing 12 years of education, students can apply for undergraduate degrees at universities or colleges. Undergraduate study in India typically consists of a 3-year Bachelor’s degree and a 4-year programme for a professional degree, such as a Bachelor of Engineering (B.E) or a Bachelor of Medicine or a Bachelor of Surgery (MBBS).</p>
+          <p>Admission is based on the student’s performance in their final secondary school examinations, such as the Higher Secondary Certificate (HSC) or the Indian School Certificate (ISC). Some courses may have additional entrance exams or require minimum grades in specific subjects.</p>
+          <h4>Postgraduate UK Study (Online Pathways)</h4>
+          <p><strong>Master’s Study</strong></p>
+          <p>After completing an undergraduate degree, students can pursue online postgraduate diplomas, certificates, or Master’s degrees, such as MA, MSc, MBA, LLM, MEd, MPhil, or MRes, with live doubt-clearing support.</p>
+          <p>Grades are normally awarded as follows:</p>
+          <ul>
+            <li>Distinction</li>
+            <li>Merit</li>
+            <li>Pass</li>
+            <li>Fail</li>
+          </ul>
+          <p><strong>Doctorates/PhD</strong></p>
+          <p>An online doctorate (Level 8 of the NQF/ FHEQ) involves original research over at least three years, with pass/fail or distinction grades, supported by virtual mentorship.</p>
+          <h4>Postgraduate Study in India</h4>
+          <p><strong>Master’s Study</strong></p>
+          <p>Postgraduate study in India typically consists of a two-year Master’s degree and a three-year professional degree, such as a Master of Business Administration (MBA) or a Master of Technology (M.Tech).</p>
+          <p>To be eligible for postgraduate study, students must have completed an undergraduate degree from a recognised university or college in India. Admissions to postgraduate courses is based on the student’s performance in their undergraduate degree and their scores on entrance exams like the Graduate Aptitude Test in Engineering (GATE) for technical courses or the Common Admission Test (CAT) for management programmes.</p>
+          <p><strong>Doctorates/PhD</strong></p>
+          <p>A PhD in India typically takes 3-5 years to complete, depending on the field of study and the candidate’s research progress. To be eligible for a PhD in India, a student must have completed a Master’s degree from a recognised university or college. PhD students are typically required to submit a thesis or dissertation representing their original research and making a significant contribution to their field of study.</p>
+          <h4>Education in Scotland (Online Option)</h4>
+          <p>Our online platform offers the Scottish Qualifications Authority (SQA) curriculum for years S3-S6, equivalent to Indian SSC and UK GCSEs, with grades from 1 (highest) to 7 (lowest), where 3 and above is a pass.</p>
+          <p>Years S5 and S6 courses, harder than GCSEs but easier than A-Levels, are delivered online, preparing students for Scottish university degrees, which last one year longer than English degrees.</p>
+          <p>The Advanced Higher, for the ablest S6 students, focuses on one or two subjects, graded A-E, and is offered online with live support.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<script src="{% static 'assets/js/faq.js' %}"></script>
+  <script src="{% static 'assets/js/faq.js' %}"></script>
 
-{% endblock %}
+{% endblock %}
