@@ -28,6 +28,18 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('username', 'email', 'role')
     ordering = ('username',)
 
+    # 👇 ye method ensure karega ki sabhi users visible hon (even non-staff)
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs  # koi filter nahi lagaya — sab users dikh jayenge
+
+    # optional: agar chahte ho non-staff bhi edit ho sake
+    def has_change_permission(self, request, obj=None):
+        return True
+
+    def has_view_permission(self, request, obj=None):
+        return True
+
 
 # ==========================
 # Student Profile Admin
