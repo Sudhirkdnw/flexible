@@ -18,6 +18,7 @@ admin.site.index_title = "Welcome to Edvantage Dashboard"
 # ==========================
 # Custom User Admin
 # ==========================
+@admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ('Custom Fields', {'fields': ('role',)}),

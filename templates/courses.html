@@ -39,17 +39,19 @@
                   <option value="Face-to-Face">Face-to-Face</option>
                 </select>
               </div>
-              <div class="col-md-4">
+              {% comment %} <div class="col-md-4">
                 <select class="form-select crs-filter-select" id="crs-filter-psw">
                   <option value="all">All PSW Eligibility</option>
                   <option value="Yes">PSW Eligible</option>
                   <option value="No">Not PSW Eligible</option>
                 </select>
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
       
     <!-- Courses Section -->
+    <h2>Our Courses</h2>
+
     <div class="crs-container row g-4" id="crs-list">
       {% for course in courses %}
       <div class="col-md-6 col-lg-4 crs-item"
@@ -89,25 +91,11 @@
       </div>
       {% endfor %}
     </div>
-    
-         
-             
-          
-          </div>
+ </div>
       
 
       <!-- Course Eligibility and Requirements -->
-      <div class="info-section">
-        <h3>Course Eligibility and Requirements</h3>
-        <p>Our courses are designed to accommodate a diverse range of learners, including international students. Below are the general eligibility criteria and requirements for each course level:</p>
-        <ul>
-          <li><strong>GCSE Courses:</strong> Suitable for students aged 14+ with basic proficiency in English (IELTS 4.5 or equivalent). No prior qualifications required. Students must have access to a computer and stable internet for online courses.</li>
-          <li><strong>A-Level Courses:</strong> Requires completion of GCSE or equivalent qualifications with a minimum grade of C/4 in relevant subjects. Recommended for students aged 16+. Face-to-face courses require attendance at our UK campus.</li>
-          <li><strong>BSc Courses:</strong> Requires A-Level qualifications or equivalent (e.g., International Baccalaureate) with strong grades in relevant subjects. International students must provide proof of English proficiency (IELTS 6.0 or equivalent). PSW-eligible courses require a UK student visa.</li>
-          <li><strong>MSc Courses:</strong> Requires a bachelor’s degree or equivalent with strong grades in relevant subjects. International students must provide proof of English proficiency (IELTS 6.5 or equivalent). PSW-eligible courses require a UK student visa.</li>
-          <li><strong>Additional Requirements:</strong> All students must submit an application form, identification documents, and, for international students, proof of visa status where applicable. Specific courses may have additional subject-specific prerequisites.</li>
-        </ul>
-      </div>
+     
       <!-- How Online Courses Work -->
       <div class="info-section">
         <h3>How Online Courses Work</h3>
